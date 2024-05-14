@@ -1,5 +1,5 @@
 # EduHub
-Note: You can find the files in master branch
+Note: You can find the files in master branch\n
 EduHub is a Blazor.NET information platform that aims to revolutionize career education using module materials, community building, and simulation learning
 
 #Problem
