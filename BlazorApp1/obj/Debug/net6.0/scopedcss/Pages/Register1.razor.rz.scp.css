@@ -1,0 +1,112 @@
+body[b-k9wwsp9jh6] {
+    overflow: hidden;
+}
+
+.background-image[b-k9wwsp9jh6] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+.logo-image[b-k9wwsp9jh6] {
+    position: absolute;
+    top: -15%;
+    left: 37%;
+    z-index: -1;
+}
+
+.register-text[b-k9wwsp9jh6] {
+    position: absolute;
+    top: 18%;
+    left: 43%;
+    font-size: 300%;
+    color: #C7B7A3;
+    font-family: Bahnschrift;
+    letter-spacing: 7px;
+}
+
+.username-text[b-k9wwsp9jh6] {
+    position: absolute;
+    top: 28%;
+    left: 40%;
+    color: #C7B7A3;
+    font-family: Bahnschrift;
+    font-size: 150%;
+    letter-spacing: 2px;
+}
+
+#username[b-k9wwsp9jh6] {
+    position: absolute;
+    top: 32%;
+    left: 40%;
+    width: 20%;
+    height: 8%;
+    padding: 8px;
+    background-color: transparent;
+    border: 3px solid #C7B7A3;
+    color: #C7B7A3;
+}
+
+.password-text[b-k9wwsp9jh6] {
+    position: absolute;
+    top: 44%;
+    left: 40%;
+    color: #C7B7A3;
+    font-family: Bahnschrift;
+    font-size: 150%;
+    letter-spacing: 2px;
+}
+
+#password[b-k9wwsp9jh6] {
+    position: absolute;
+    top: 48%;
+    left: 40%;
+    width: 20%;
+    height: 8%;
+    padding: 8px;
+    background-color: transparent;
+    border: 3px solid #C7B7A3;
+    color: #C7B7A3;
+}
+
+.verify-password[b-k9wwsp9jh6] {
+    position: absolute;
+    top: 60%;
+    left: 40%;
+    color: #C7B7A3;
+    font-family: Bahnschrift;
+    font-size: 150%;
+    letter-spacing: 2px;
+}
+
+#verify-password[b-k9wwsp9jh6] {
+    position: absolute;
+    top: 65%;
+    left: 40%;
+    width: 20%;
+    height: 8%;
+    padding: 8px;
+    background-color: transparent;
+    border: 3px solid #C7B7A3;
+    color: #C7B7A3;
+}
+
+.register-button[b-k9wwsp9jh6] {
+    position: absolute;
+    top: 78%;
+    left: 45%;
+    width: 150px;
+    height: 70px;
+    background-color: #C7B7A3;
+    font-family: Bahnschrift;
+    font-size: 25px;
+    padding: 8px;
+}
+
+    .register-button:hover[b-k9wwsp9jh6] {
+        background-color: black;
+        color: #C7B7A3;
+    }

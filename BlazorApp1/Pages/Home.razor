@@ -1,0 +1,28 @@
+﻿@layout Shared.MainLayout
+@using BlazorApp1.Shared
+@inject NavigationManager NavigationManager
+@page "/home"
+<PageTitle>Home</PageTitle>
+
+<Chatbot></Chatbot>
+
+<div class="simulation-text"><h4>Simulations</h4></div>
+<div class="simulation-examples" id="simulation-example1-division"><img src="css/resources/simulations/Doctor.png" /></div>
+<div class="simulation-examples" id="simulation-example2-division"><img src="css/resources/simulations/Bartender.png" /></div>
+<div class="simulation-examples" id="simulation-example3-division"><img src="css/resources/simulations/Chef.png" /></div>
+<div class="simulation-examples" id="simulation-example4-division"><img src="css/resources/simulations/Programmer.png" /></div>
+<NavLink href="/simulation">
+<div class="more-materials" id="more-simulation-division"><h5>SEE MORE SIMULATIONS</h5></div>
+</NavLink>
+<div class="module-text"><h4>Modules</h4></div>
+<div class="module-examples" id="module-example1-division"><img src="\css\resources\modules\Introtoprog.png" /></div>
+<div class="module-examples" id="module-example2-division"><img src="\css\resources\modules\essentialcooking.png" /></div>
+<div class="module-examples" id="module-example3-division"><img src="\css\resources\modules\engineeringbasic.png" /></div>
+<div class="module-examples" id="module-example4-division"><img src="\css\resources\modules\botany101.png" /></div>
+<NavLink href="/module">
+<div class="more-materials" id="more-module-division"><h5>VIEW MORE MODULES</h5></div>
+</NavLink>
+
+@code {
+
+}

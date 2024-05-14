@@ -1,0 +1,112 @@
+﻿@page "/aoop"
+
+<div style="display: flex; overflow:hidden;">
+    <!-- Smaller division for slide thumbnails -->
+    <div style="position:absolute; height:98%; width:25%; overflow-y:auto;">
+        <img src="css/resources/aoop_ppt/1.png" class="slides" @onclick="() => SelectSlide(1)" /><br />
+        <img src="css/resources/aoop_ppt/2.png" class="slides" @onclick="() => SelectSlide(2)" /><br />
+        <img src="css/resources/aoop_ppt/3.png" class="slides" @onclick="() => SelectSlide(3)" /><br />
+        <img src="css/resources/aoop_ppt/4.png" class="slides" @onclick="() => SelectSlide(4)" /><br />
+        <img src="css/resources/aoop_ppt/5.png" class="slides" @onclick="() => SelectSlide(5)" /><br />
+        <img src="css/resources/aoop_ppt/6.png" class="slides" @onclick="() => SelectSlide(6)" /><br />
+        <img src="css/resources/aoop_ppt/7.png" class="slides" @onclick="() => SelectSlide(7)" /><br />
+        <img src="css/resources/aoop_ppt/8.png" class="slides" @onclick="() => SelectSlide(8)" /><br />
+        <img src="css/resources/aoop_ppt/9.png" class="slides" @onclick="() => SelectSlide(9)" /><br />
+        <img src="css/resources/aoop_ppt/10.png" class="slides" @onclick="() => SelectSlide(10)" /><br />
+        <img src="css/resources/aoop_ppt/11.png" class="slides" @onclick="() => SelectSlide(11)" /><br />
+        <img src="css/resources/aoop_ppt/12.png" class="slides" @onclick="() => SelectSlide(12)" /><br />
+        <img src="css/resources/aoop_ppt/13.png" class="slides" @onclick="() => SelectSlide(13)" /><br />
+        <img src="css/resources/aoop_ppt/14.png" class="slides" @onclick="() => SelectSlide(14)" /><br />
+        <img src="css/resources/aoop_ppt/15.png" class="slides" @onclick="() => SelectSlide(15)" /><br />
+        <img src="css/resources/aoop_ppt/16.png" class="slides" @onclick="() => SelectSlide(16)" /><br />
+    </div>
+
+    <!-- Main division for displaying selected slide -->
+    <div class="big-slide">
+        @if (selectedSlide != null)
+        {
+            <img src="css/resources/aoop_ppt/@selectedSlide" />
+            <NavLink href="/module">
+                <div class="back-bg">
+                    <h3 class="back">Back</h3>
+                </div>
+            </NavLink>
+        }
+        else
+        {
+            <p>No slide selected</p>
+        }
+    </div>
+</div>
+
+@code {
+    string selectedSlide = "1.png";
+
+    void SelectSlide(int slideNumber)
+    {
+        if (slideNumber == 1)
+        {
+            selectedSlide = "1.png";
+        }
+        else if (slideNumber == 2)
+        {
+            selectedSlide = "2.png";
+        }
+        else if (slideNumber == 3)
+        {
+            selectedSlide = "3.png";
+        }
+        else if (slideNumber == 4)
+        {
+            selectedSlide = "4.png";
+        }
+        else if (slideNumber == 5)
+        {
+            selectedSlide = "5.png";
+        }
+        else if (slideNumber == 6)
+        {
+            selectedSlide = "6.png";
+        }
+        else if (slideNumber == 7)
+        {
+            selectedSlide = "7.png";
+        }
+        else if (slideNumber == 8)
+        {
+            selectedSlide = "8.png";
+        }
+        else if (slideNumber == 9)
+        {
+            selectedSlide = "9.png";
+        }
+        else if (slideNumber == 10)
+        {
+            selectedSlide = "10.png";
+        }
+        else if (slideNumber == 11)
+        {
+            selectedSlide = "11.png";
+        }
+        else if (slideNumber == 12)
+        {
+            selectedSlide = "12.png";
+        }
+        else if (slideNumber == 13)
+        {
+            selectedSlide = "13.png";
+        }
+        else if (slideNumber == 14)
+        {
+            selectedSlide = "14.png";
+        }
+        else if (slideNumber == 15)
+        {
+            selectedSlide = "15.png";
+        }
+        else if (slideNumber == 16)
+        {
+            selectedSlide = "16.png";
+        }
+    }
+}

@@ -1,0 +1,143 @@
+﻿@page "/segregation"
+@using System.Collections.Generic
+@using System.Linq
+
+<div class="game-box">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <!-- Timer -->
+                <div class="box">
+                    <Timer CorrectOrders="@score" WrongOrders="@not_score"></Timer>
+                </div>
+            </div>
+            <div class="col">
+                <!-- Current Trash -->
+                <div class="box">
+                    @if (currentTrash != null)
+                    {
+                        <img src="@currentTrash.ImageUrl" class="trash" @onclick="() => SelectTrash()" />
+                    }
+                </div>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+        <!-- Trash Cans -->
+        <div class="row">
+            @foreach (var trashCan in trashCans)
+            {
+                <div class="col">
+                    <div class="box" @onclick="() => SelectTrashCan(trashCan.Type)" style="cursor: pointer;">
+                        <h1>@trashCan.Type</h1>
+                        <img src="@trashCan.ImageUrl" class="bio-button" id=@trashCan.ImageUrl />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    class Trash
+    {
+        public string Name { get; set; }
+        public string ImageUrl { get; set; }
+        public List<string> Types { get; set; }  // Types of trash it belongs to
+    }
+
+    class TrashCan
+    {
+        public string Name { get; set; }
+        public string ImageUrl { get; set; }
+        public string Type { get; set; }  // Type of trash can
+    }
+
+    // Array containing different trash items
+    Trash[] trashItems = new Trash[]
+    {
+        new Trash { Name = "Banana Peel", ImageUrl = "css/resources/segragation/trash/banana-peel.png", Types = new List<string> { "Biodegradable", "Green" } },
+        new Trash { Name = "Leftover Food Scraps", ImageUrl = "css/resources/segragation/trash/leftover-food.png", Types = new List<string> { "Biodegradable" } },
+        new Trash { Name = "Plastic Bottle", ImageUrl = "css/resources/segragation/trash/plastic-bottle.png",Types = new List<string> { "Recyclable", "Non-Biodegradable" } },
+        new Trash { Name = "Aluminum Cans", ImageUrl = "css/resources/segragation/trash/aluminum-can.png", Types = new List<string> { "Recyclable", "Non-Biodegradable" } },
+        new Trash { Name = "Broken Phone", ImageUrl = "css/resources/segragation/trash/broken-phone.png", Types = new List<string> { "Electronic" } },
+        new Trash { Name = "Old Television", ImageUrl = "css/resources/segragation/trash/old-tv.png", Types = new List<string> { "Electronic" } },
+        new Trash { Name = "Styrofoam Packaging", ImageUrl = "css/resources/segragation/trash/styrofoam-packaging.png", Types = new List<string> { "Non-Biodegradable"} },
+        new Trash { Name = "Batteries", ImageUrl = "css/resources/segragation/trash/batteries.png", Types = new List<string> { "Electronic", "Hazardous" } },
+        new Trash { Name = "Chemical Cleaning Products", ImageUrl = "css/resources/segragation/trash/chemical-products.png", Types = new List<string> { "Hazardous" } },
+        new Trash { Name = "Grass Clippings", ImageUrl = "css/resources/segragation/trash/grass-clippings.png", Types = new List<string> { "Biodegradable", "Green" } },
+        new Trash { Name = "Leaves", ImageUrl = "css/resources/segragation/trash/leaves.png", Types = new List<string> { "Biodegradable", "Green" } },
+        new Trash { Name = "Used Syringe", ImageUrl = "css/resources/segragation/trash/used-syringe.png", Types = new List<string> { "Medical" } },
+        new Trash { Name = "Expired Medications", ImageUrl = "css/resources/segragation/trash/medicines.png", Types = new List<string> { "Medical" } },
+        // Add more trash items as needed
+    };
+
+    List<TrashCan> trashCans = new List<TrashCan>
+    {
+        new TrashCan { Name = "TrashCan1", ImageUrl = "css/resources/segragation/bio.png", Type = "Biodegradable" },
+        new TrashCan { Name = "TrashCan2", ImageUrl = "css/resources/segragation/electronic.png", Type = "Electronic" },
+        new TrashCan { Name = "TrashCan3", ImageUrl = "css/resources/segragation/green.png", Type = "Green" },
+        new TrashCan { Name = "TrashCan4", ImageUrl = "css/resources/segragation/hazard.png", Type = "Hazardous" },
+        new TrashCan { Name = "TrashCan5", ImageUrl = "css/resources/segragation/medical.png", Type = "Medical" },
+        new TrashCan { Name = "TrashCan6", ImageUrl = "css/resources/segragation/non bio.png", Type = "Non-Biodegradable" },
+        new TrashCan { Name = "TrashCan7", ImageUrl = "css/resources/segragation/recyclable.png", Type = "Recyclable" }
+    };
+
+    Trash currentTrash;
+    int score = 0;
+    int not_score = 0;
+
+    Random random = new Random();
+
+    protected override void OnInitialized()
+    {
+        GenerateNewTrash();
+    }
+
+    void GenerateNewTrash()
+    {
+        currentTrash = trashItems[random.Next(trashItems.Length)];
+    }
+
+    void SelectTrash()
+    {
+        if (currentTrash == null)
+        {
+            return;
+        }
+
+        foreach (var trashCan in trashCans)
+        {
+            if (currentTrash.Types.Contains(trashCan.Type))
+            {
+                score++;
+                GenerateNewTrash();
+                return;
+            }
+        }
+    }
+
+    void SelectTrashCan(string trashCanType)
+    {
+        if (currentTrash == null)
+        {
+            return;
+        }
+
+        if (currentTrash.Types.Contains(trashCanType))
+        {
+            score++;
+        }
+        else
+        {
+            not_score++;
+        }
+
+        GenerateNewTrash();
+        StateHasChanged();
+    }
+    void PrintTrashCanName(string trashCanName)
+    {
+        Console.WriteLine($"You clicked {trashCanName}");
+    }
+}

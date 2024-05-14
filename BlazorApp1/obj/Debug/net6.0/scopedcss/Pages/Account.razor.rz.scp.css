@@ -1,0 +1,120 @@
+body[b-dl0rybzmco] {
+}
+
+.content[b-dl0rybzmco] {
+    position: relative;
+}
+
+.Profile-form[b-dl0rybzmco] {
+    position: absolute;
+    width: 70%;
+    left: 30%;
+    top: 1%;
+    height: 98%;
+}
+
+.profile-pic[b-dl0rybzmco] {
+    position: absolute;
+    width: 18%;
+    height: 40%;
+    top: 5%;
+    left: 5%;
+    border-radius: 70%;
+    background-color: navajowhite;
+    border: 3px dashed black;
+}
+
+.profile-pic img[b-dl0rybzmco]{
+    width: 100%;
+    height:100%;
+    object-fit:fill;
+    border-radius: 70%;
+}
+
+.account-settings[b-dl0rybzmco]{
+    position:  absolute;
+    width: 20%;
+    height: 15vh;
+    top:48%;
+    left:3%;
+
+}
+
+.account-settings h1[b-dl0rybzmco] {
+    position: absolute;
+    left: 15%;
+    top: 25%;
+    color: #6D2932;
+}
+
+.terms-conditions[b-dl0rybzmco] {
+    position: absolute;
+    width: 20%;
+    height: 15vh;
+    top: 70%;
+    left: 3%;
+}
+
+    .terms-conditions h1[b-dl0rybzmco] {
+        position: absolute;
+        left: 25%;
+        top: 25%;
+        color: #6D2932;
+    }
+
+.account-label[b-dl0rybzmco] {
+    position: absolute;
+    left: 10%;
+    top: 800%;
+    color: #6D2932;
+    letter-spacing: 3px;
+    transform: scale(2);
+}
+
+.username-label[b-dl0rybzmco] {
+    position: absolute;
+    left: 7%;
+    top: 1350%;
+    transform: scale(1.5);
+    color: #6D2932;
+}
+
+.name-label[b-dl0rybzmco] {
+    position: absolute;
+    left: 5.9%;
+    top: 1650%;
+    transform: scale(1.5);
+    color: #6D2932;
+}
+
+.age-label[b-dl0rybzmco] {
+    position: absolute;
+    left: 5.7%;
+    top: 1950%;
+    transform: scale(1.5);
+    color: #6D2932;
+}
+
+.sex-label[b-dl0rybzmco] {
+    position: absolute;
+    left: 5.9%;
+    top: 2250%;
+    transform: scale(1.5);
+    color: #6D2932;
+}
+
+.address-label[b-dl0rybzmco] {
+    position: absolute;
+    left: 6.5%;
+    top: 2550%;
+    transform: scale(1.5);
+    color: #6D2932;
+}
+
+.description-label[b-dl0rybzmco] {
+    position: absolute;
+    left: 6.9%;
+    top: 2850%;
+    transform: scale(1.5);
+    color: #6D2932;
+}

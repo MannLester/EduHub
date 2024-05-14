@@ -1,0 +1,118 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+@using System.IO
+
+@code {
+    private string currentPath = "";
+    private string username = "";
+    private string profileHref = "";
+    private string[] imageUrls = new string[] { "css/bootstrap/pic1.jpg", "css/bootstrap/pic2.jpg", "css/bootstrap/pic3.jpg" };
+    private string randomProfilePictureUrl;
+    private static bool isRandomImagePicked = false;
+
+    protected override void OnInitialized()
+    {
+        // Select a random image URL if it hasn't been set already
+        if (!isRandomImagePicked)
+        {
+            randomProfilePictureUrl = GetRandomProfilePictureUrl();
+            isRandomImagePicked = true;
+            Console.WriteLine("Random profile picture selected: " + randomProfilePictureUrl); // Debugging statement
+        }
+
+        // Get the current URL path
+        currentPath = NavigationManager.Uri;
+        Console.WriteLine("Current path: " + currentPath); // Debugging statement
+
+        // Subscribe to the LocationChanged event to update the currentPath variable
+        NavigationManager.LocationChanged += HandleLocationChanged;
+
+        try
+        {
+            // Read the username from the file
+            username = File.ReadAllText("successful_logins.txt").Trim();
+            Console.WriteLine("Username read from file: " + username); // Debugging statement
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error reading file: " + ex.Message);
+        }
+
+        profileHref = "/profile/" + username;
+        base.OnInitialized();
+    }
+
+    // Method to handle location changes
+    private void HandleLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    {
+        currentPath = e.Location;
+        StateHasChanged(); // Notify Blazor to re-render the component
+    }
+
+    private string GetRandomProfilePictureUrl()
+    {
+        Random random = new Random();
+        int index = random.Next(imageUrls.Length);
+        return imageUrls[index];
+    }
+}
+
+<div class="top-division">
+    <NavLink href="/">
+        <div class="logo-division"><img src="\css\resources\EduHub_logo2.png" alt="EduHub Logo" /></div>
+    </NavLink>
+
+    @if (currentPath == "https://localhost:7192" + profileHref || currentPath == "https://localhost:7192/terms" || currentPath == "https://localhost:7192/account")
+    {
+        @if(username == "name2")
+        {
+            <NavLink href="/home">
+                <div class="account-division"><img src="css/bootstrap/pic1.jpg" alt="Profile Picture" /></div>
+            </NavLink>
+        }
+        else if (username == "name1")
+        {
+            <NavLink href="/home">
+                <div class="account-division"><img src="css/bootstrap/pic2.jpg" alt="Profile Picture" /></div>
+            </NavLink>
+        }
+        else
+        {
+            <NavLink href="/home">
+                <div class="account-division"><img src="css/bootstrap/pic3.jpg" alt="Profile Picture" /></div>
+            </NavLink>
+        }
+
+    }
+    else
+    {
+        @if(username == "name2")
+        {
+            <NavLink href="@profileHref">
+                <div class="account-division"><img src="css/bootstrap/pic1.jpg" alt="Profile Picture" /></div>
+            </NavLink>
+        }
+        else if (username == "name1")
+        {
+            <NavLink href="@profileHref">
+                <div class="account-division"><img src="css/bootstrap/pic2.jpg" alt="Profile Picture" /></div>
+            </NavLink>
+        }
+        else
+        {
+            <NavLink href="@profileHref">
+                <div class="account-division"><img src="css/bootstrap/pic3.jpg" alt="Profile Picture" /></div>
+            </NavLink>
+        }
+    }
+</div>
+<div class="main-division">
+    <NavMenu></NavMenu>
+    <article>@Body</article>
+</div>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>

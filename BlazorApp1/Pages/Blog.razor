@@ -1,0 +1,76 @@
+﻿@using BlazorApp1.Shared
+@inject NavigationManager NavigationManager
+
+@page "/dev"
+
+<CommunityMenu></CommunityMenu>
+<div class="sidebox" id="box-1" @onclick="() => ShowChat(1)"><h1>Website Pitching</h1></div>
+<div class="sidebox" id="box-2" @onclick="() => ShowChat(2)"><h1>AOOP Final Proj</h1></div>
+
+@if (selectedChat == 1)
+{
+    <div class="sidebox" id="box-1-selected" @onclick="() => ShowChat(3)"><h1>Website Pitching</h1></div>
+    <div class="chat">
+        <h2><b>
+        The idea came into light during our competition in Technolympics. This was our saving grace despite the unfairness brought by those who are in charge, this idea
+        gave us the 2nd place. My team during this amazing time were: Mardyson Guernaldo and Nathaniel Lejano
+            </b>
+        </h2>
+    </div>
+}
+else if (selectedChat == 2)
+{
+    <div class="sidebox" id="box-2-selected" @onclick="() => ShowChat(3)"><h1>AOOP Final Proj</h1></div>
+    <div class="chat">
+        <h3><b>
+        And now, with my new team, we continue this idea. With our current skillset, this project was the closest to a finish product compared to our earlier projects.<br /><br />
+
+        Team:<br />
+        Marc Linus Rosales - Database and Backend<br /><br />
+
+        Edrian Hernandez - UI and Assets<br /><br />
+
+        Diomael Lecaroz - Tester<br /><br />
+
+        Mann Lester Magbuhos - Full Stack and Project Manager
+            </b>
+        </h3>
+    </div>
+}
+else
+{
+    <div class="chat">
+        <h3>
+        Sup this is an exclusive space for the devs...
+        </h3>
+    </div>
+}
+
+@code {
+    private int selectedChat = 0;
+
+    private void ShowChat(int chatNumber)
+    {
+        selectedChat = chatNumber;
+    }
+
+    private string currentPath = "";
+
+    protected override void OnInitialized()
+    {
+        // Get the current URL path
+        currentPath = NavigationManager.Uri;
+
+        // Subscribe to the LocationChanged event to update the currentPath variable
+        NavigationManager.LocationChanged += HandleLocationChanged;
+
+        base.OnInitialized();
+    }
+
+    // Method to handle location changes
+    private void HandleLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    {
+        currentPath = e.Location;
+        StateHasChanged(); // Notify Blazor to re-render the component
+    }
+}

@@ -1,0 +1,63 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+
+@page "/filter"
+
+<div class="filter-division">
+
+    <div class="filter-text-division"><b>F I L T E R</b></div>
+
+    @if (currentPath == "https://localhost:7192/home")
+    {
+        <NavLink href="/simulation">
+            <div class="filter-simulation-division"><b>SIMULATION</b></div>
+        </NavLink>
+
+        <NavLink href="/module">
+            <div class="filter-module-division"><b>MODULE</b></div>
+        </NavLink>
+    }
+    else if (currentPath == "https://localhost:7192/simulation")
+    {
+        <NavLink href="/home">
+            <div class="filter-simulation-division-selected"><b>SIMULATION</b></div>
+        </NavLink>
+
+        <NavLink href="/module">
+            <div class="filter-module-division"><b>MODULE</b></div>
+        </NavLink>
+    }
+    else if (currentPath == "https://localhost:7192/module")
+    {
+        <NavLink href="/simulation">
+            <div class="filter-simulation-division"><b>SIMULATION</b></div>
+        </NavLink>
+
+        <NavLink href="/home">
+            <div class="filter-module-division-selected"><b>MODULE</b></div>
+        </NavLink>
+    }
+    <div class="filter-career-text-division"><h5><b>Career</b></h5></div>
+</div>
+
+@code {
+    private string currentPath = "";
+
+    protected override void OnInitialized()
+    {
+        // Get the current URL path
+        currentPath = NavigationManager.Uri;
+
+        // Subscribe to the LocationChanged event to update the currentPath variable
+        NavigationManager.LocationChanged += HandleLocationChanged;
+
+        base.OnInitialized();
+    }
+
+    // Method to handle location changes
+    private void HandleLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    {
+        currentPath = e.Location;
+        StateHasChanged(); // Notify Blazor to re-render the component
+    }
+}

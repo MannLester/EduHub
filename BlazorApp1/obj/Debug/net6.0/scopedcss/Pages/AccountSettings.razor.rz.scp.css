@@ -1,0 +1,180 @@
+body[b-5vc6vnndad] {
+}
+
+.content[b-5vc6vnndad]{
+    position:relative;
+}
+.Profile-form[b-5vc6vnndad]{
+    position:absolute;
+    width: 70%;
+    left: 30%;
+    top:1%;
+    height: 98%;
+}
+
+.profile-pic[b-5vc6vnndad] {
+    position: absolute;
+    width: 18%;
+    height: 40%;
+    top: 5%;
+    left: 5%;
+    border-radius: 70%;
+    border: 3px dashed black;
+    z-index:1;
+}
+
+    .profile-pic img[b-5vc6vnndad] {
+        width: 100%;
+        height: 100%;
+        border-radius: 70%;
+        object-fit: fill;
+    }
+.account-settings[b-5vc6vnndad] {
+    position: absolute;
+    width: 20%;
+    height: 12vh;
+    top: 52%;
+    background-color:#6D2932;
+    border-radius: 15px;
+    left: 4%;
+}
+    .account-settings h1[b-5vc6vnndad] {
+        position: absolute;
+        left: 11%;
+        top: 28%;
+        color: navajowhite;
+    }
+
+.terms-conditions[b-5vc6vnndad] {
+    position: absolute;
+    width: 23%;
+    height: 15vh;
+    top: 70%;
+    left: 3%;
+}
+    .terms-conditions h1[b-5vc6vnndad] {
+        position: absolute;
+        left: 22%;
+        top: 25%;
+        color: #6D2932;
+    }
+
+.edit-label[b-5vc6vnndad] {
+    position: absolute;
+    left: 10%;
+    top: 8%;
+    letter-spacing: 3px;
+    transform: scale(1.5);
+    color: #6D2932;
+}
+
+.username-label[b-5vc6vnndad] {
+    position: absolute;
+    left: 12%;
+    top: 20%;
+    transform: scale(1.5);
+    color: #6D2932;
+}
+
+.fn-label[b-5vc6vnndad] {
+    position: absolute;
+    left: 10.5%;
+    top: 30%;
+    transform: scale(1.5);
+    color: #6D2932;
+}
+
+#firstName[b-5vc6vnndad]{
+    position:absolute;
+    top:29%;
+    left: 20%;
+    width:20%;
+    height:4vh;
+}
+
+.ln-label[b-5vc6vnndad] {
+    position: absolute;
+    left: 10.6%;
+    top: 40%;
+    transform: scale(1.5);
+    color: #6D2932;
+}
+
+#lastName[b-5vc6vnndad] {
+    position: absolute;
+    top: 39%;
+    left: 20%;
+    width: 20%;
+    height: 4vh;
+}
+
+.age-label[b-5vc6vnndad] {
+    position: absolute;
+    left: 15.5%;
+    top: 50%;
+    transform: scale(1.5);
+    color: #6D2932;
+}
+
+#age[b-5vc6vnndad] {
+    position: absolute;
+    top: 49%;
+    left: 20%;
+    width: 20%;
+    height: 4vh;
+}
+
+.sex-label[b-5vc6vnndad] {
+    position: absolute;
+    left: 15.7%;
+    top: 60%;
+    transform: scale(1.5);
+    color: #6D2932;
+}
+
+#sex[b-5vc6vnndad] {
+    position: absolute;
+    top: 59%;
+    left: 20%;
+    width: 20%;
+    height: 4vh;
+}
+
+.address-label[b-5vc6vnndad] {
+    position: absolute;
+    left: 12.4%;
+    top: 70%;
+    transform: scale(1.5);
+    color: #6D2932;
+}
+
+#address[b-5vc6vnndad] {
+    position: absolute;
+    top: 69%;
+    left: 20%;
+    width: 20%;
+    height: 4vh;
+}
+
+.description-label[b-5vc6vnndad] {
+    position: absolute;
+    left: 10%;
+    top: 80%;
+    transform: scale(1.5);
+    color: #6D2932;
+}
+
+#description[b-5vc6vnndad] {
+    position: absolute;
+    top: 79%;
+    left: 20%;
+    width: 20%;
+    height: 4vh;
+}
+
+.profilebutton[b-5vc6vnndad] {
+    position: absolute;
+    left: 25%;
+    top: 88%;
+    height: 10vh;
+}

@@ -1,0 +1,27 @@
+﻿<!-- CorrectWrongOrdersPopup.razor -->
+@using Microsoft.AspNetCore.Components
+<!-- Import any other necessary namespaces -->
+
+<div class="popup">
+    <!-- Popup content here -->
+    <h3>Popup Content</h3>
+    <p>Correct Orders: @CorrectOrders</p>
+    <p>Wrong Orders: @WrongOrders</p>
+    <button @onclick="ClosePopup">Close</button>
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback OnClose { get; set; }
+
+    [Parameter]
+    public int CorrectOrders { get; set; }
+
+    [Parameter]
+    public int WrongOrders { get; set; }
+
+    private async Task ClosePopup()
+    {
+        await OnClose.InvokeAsync();
+    }
+}

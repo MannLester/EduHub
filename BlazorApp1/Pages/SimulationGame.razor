@@ -1,0 +1,422 @@
+﻿@page "/game"
+@layout LoginLayout
+@using BlazorApp1.Shared
+@inject NavigationManager NavigationManager
+@using System.Threading.Tasks
+
+<div class="partition-1">
+    <!-- Order list -->
+    <h3 class="order">Order</h3>
+    <Order @ref="orderComponent"></Order>
+    <img src="css/resources/orderPaper.png" class="paper" />
+    <button type="button" class="accept" @onclick="CalculateTotal"><img src="css/resources/accept.png" /></button>
+    <button type="button" class="reject" @onclick="RejectOrder"><img src="css/resources/reject.png"/></button>
+
+    <!-- Medicine list -->
+    <h3 class="handle">Handle</h3>
+    <div class="medicine-list">
+        <h4 class="antibiotics">Antibiotics</h4>
+        <h4 class="insulin">Insulin</h4>
+        <h4 class="ibuprofen">Ibuprofen</h4>
+        <h4 class="anti">Antihistamines</h4>
+        <h4 class="cough">Cough Syrup</h4>
+        <h4 class="antacid">Antacid</h4>
+        <h4 class="beverage">Beverages</h4>
+        <h4 class="condom">Condom</h4>
+        <h4 class="cream">Cream</h4>
+        <h4 class="liquid-soap">Liquid Soap</h4>
+    </div>
+    <!-- Medicine count boxes -->
+    <div class="medicine-count">
+        <div class="antibiotics-box"><h4>@medicineCount["Antibiotics"]</h4></div>
+        <div class="insulin-box"><h4>@medicineCount["Insulin"]</h4></div>
+        <div class="ibuprofen-box"><h4>@medicineCount["Ibuprofen"]</h4></div>
+        <div class="anti-box"><h4>@medicineCount["Antihistamines"]</h4></div>
+        <div class="cough-box"><h4>@medicineCount["Cough Syrup"]</h4></div>
+        <div class="antacid-box"><h4>@medicineCount["Antacid"]</h4></div>
+        <div class="beverages-box"><h4>@medicineCount["Beverage"]</h4></div>
+        <div class="condom-box"><h4>@medicineCount["Condom"]</h4></div>
+        <div class="cream-box"><h4>@medicineCount["Cream"]</h4></div>
+        <div class="liquid-soap-box"><h4>@medicineCount["Liquid Soap"]</h4></div>
+    </div>
+</div>
+
+<div class="partition-2">
+    <h3 class="counter">Counter</h3>
+    <!--RECEIPT HERE-->
+    <div class="receipt">
+        <table class="receipt-table">
+            <tr>
+                <th><h3>Name</h3></th>
+                <th><h3>Quantity</h3></th>
+                <th><h3>Price</h3></th>
+            </tr>
+            @foreach (var item in selectedMedicines)
+            {
+                <tr>
+                    <td><h5>@item.Name</h5></td>
+                    <td><h5>@item.Quantity</h5></td>
+                    <td><h5>@item.Price</h5></td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div>
+        <h4 class="total-quantity">Total Quantity: @totalQuantity</h4>
+        <h4 class="total-price">Total Price: @totalPrice</h4>
+        <h4 class="customer-money">Customer Money: @customerMoney</h4>
+    </div>
+    <button type="button" class="number-button" id="number1" @onclick="() => AddNumber(1)">1</button>
+    <button type="button" class="number-button" id="number2" @onclick="() => AddNumber(2)">2</button>
+    <button type="button" class="number-button" id="number3" @onclick="() => AddNumber(3)">3</button>
+    <button type="button" class="number-button" id="number4" @onclick="() => AddNumber(4)">4</button>
+    <button type="button" class="number-button" id="number5" @onclick="() => AddNumber(5)">5</button>
+    <button type="button" class="number-button" id="number6" @onclick="() => AddNumber(6)">6</button>
+    <button type="button" class="number-button" id="number7" @onclick="() => AddNumber(7)">7</button>
+    <button type="button" class="number-button" id="number8" @onclick="() => AddNumber(8)">8</button>
+    <button type="button" class="number-button" id="number9" @onclick="() => AddNumber(9)">9</button>
+    <button type="button" class="number-button" id="number0" @onclick="() => AddNumber(0)">0</button>
+    <div class="number-display">
+        <h4>@numberDisplay</h4>
+        <button type="button" class="pay-button" @onclick="AcceptOrder"><p>></p></button>
+    </div>
+</div>
+<div class="simulation-bg">
+    <Timer CorrectOrders="@correctOrders" WrongOrders="@wrongOrders"></Timer>
+    <NavLink href="/simulation">
+    <img src="css/resources/arrow.png" class="back-arrow" />
+    <h3 class="exit">Back</h3>
+    </NavLink>
+    <button type="button" class="medicine-1" @onclick='() => IncreaseMedicineCount("Antacid")'><img src="css/resources/ray.png" class="ray-1" /></button>
+    <button type="button" class="medicine-2" @onclick='() => IncreaseMedicineCount("Liquid Soap")'><img src="css/resources/ray.png" class="ray-2" /></button>
+    <button type="button" class="medicine-3" @onclick='() => IncreaseMedicineCount("Cream")'><img src="css/resources/ray.png" class="ray-3" /></button>
+    <button type="button" class="medicine-4" @onclick='() => IncreaseMedicineCount("Beverage")'><img src="css/resources/ray.png" class="ray-4" /></button>
+    <button type="button" class="medicine-5" @onclick='() => IncreaseMedicineCount("Antihistamines")'><img src="css/resources/ray.png" class="ray-5" /></button>
+    <button type="button" class="medicine-6" @onclick='() => IncreaseMedicineCount("Cough Syrup")'><img src="css/resources/ray.png" class="ray-6" /></button>
+    <button type="button" class="medicine-7" @onclick='() => IncreaseMedicineCount("Ibuprofen")'><img src="css/resources/ray.png" class="ray-7" /></button>
+    <button type="button" class="medicine-8" @onclick='() => IncreaseMedicineCount("Condom")'><img src="css/resources/ray.png" class="ray-8" /></button>
+    <button type="button" class="medicine-9" @onclick='() => IncreaseMedicineCount("Insulin")'><img src="css/resources/ray.png" class="ray-9" /></button>
+    <button type="button" class="medicine-10" @onclick='() => IncreaseMedicineCount("Antibiotics")'><img src="css/resources/ray.png" class="ray-10" /></button>
+    <img src="css/resources/simulation_background.png" class="pharma-bg"/>
+    <br />
+    <img src="css/resources/info.png" class="info-img" />
+    <h3 class="name"><b>Pharmacy Simulation</b></h3>
+</div>
+
+@code {
+    Medicine[] medicines = new Medicine[]
+    {
+            new Medicine { Name = "Antacid", Price = 300},
+            new Medicine { Name = "Liquid Soap", Price = 200},
+            new Medicine { Name = "Cream", Price = 600},
+            new Medicine { Name = "Beverage", Price = 20},
+            new Medicine { Name = "Antihistamines", Price = 400},
+            new Medicine { Name = "Cough Syrup", Price = 500},
+            new Medicine { Name = "Ibuprofen", Price = 250},
+            new Medicine { Name = "Condom", Price = 100},
+            new Medicine { Name = "Insulin", Price = 5000},
+            new Medicine { Name = "Antibiotics", Price = 750}
+    };
+
+    public class Medicine
+    {
+        public string Name { get; set; }
+        public int Price { get; set; }
+    }
+
+    public class SelectedMedicine
+    {
+        public string Name { get; set; }
+        public int Quantity { get; set; }
+        public int Price { get; set; }
+    }
+
+    List<SelectedMedicine> selectedMedicines = new List<SelectedMedicine>();
+    Order orderComponent;
+    Dictionary<string, int> orderQuantities = new Dictionary<string, int>();
+    int currentNumber = 0;
+    int totalQuantity = 0;
+    int totalPrice = 0;
+    int customerMoney = 0;
+    int correctOrders = 0;
+    int wrongOrders = 0;
+    private int timeLeft = 60;
+    string numberDisplay = "0";
+
+    void RejectOrder()
+    {
+        bool status = CheckOrderValidity(false);
+        Console.WriteLine(status);
+        if (status)
+        {
+            correctOrders++;
+        }
+        else
+        {
+            wrongOrders++;
+        }
+        RefreshOrder();
+    }
+    void RefreshOrder()
+    {
+        orderComponent.RefreshOrder();
+        ResetMedicineCounts();
+        ResetReceipt();
+        orderQuantities = orderComponent.RandomOrder
+            .Where(kvp => medicineCount.ContainsKey(ExtractMedicineName(kvp.Key)))
+            .ToDictionary(kvp => ExtractMedicineName(kvp.Key), kvp => kvp.Value);
+
+
+        Console.WriteLine($"Correct orders {correctOrders}");
+        Console.WriteLine($"Wrong orders {wrongOrders}");
+    }
+
+    void ResetMedicineCounts()
+    {
+        foreach (var key in medicineCount.Keys.ToList())
+        {
+            medicineCount[key] = 0;
+        }
+    }
+
+    void ResetReceipt()
+    {
+        selectedMedicines.Clear();
+        totalQuantity = 0; 
+        totalPrice = 0;
+        customerMoney = 0; 
+        numberDisplay = "0";
+        currentNumber = 0;
+    }
+
+    void AcceptOrder()
+    {
+        bool orderAccepted = true;
+
+        EnsureMedicineCountConsistency();
+
+        foreach (var kvp in orderQuantities)
+        {
+            string medicine = kvp.Key;
+            int quantityInOrder = kvp.Value;
+
+            // Check if the medicine is present in the order
+            if (medicineCount.ContainsKey(medicine))
+            {
+                int quantityCounted = medicineCount[medicine];
+                Console.WriteLine($"Medicine: {medicine}, Quantity in Order: {quantityInOrder}, Quantity Counted: {quantityCounted}");
+                if (quantityInOrder != quantityCounted)
+                {
+                    orderAccepted = false;
+                    break;
+                }
+            }
+            else
+            {
+                // If the medicine is not in the order, consider it as incorrect
+                orderAccepted = false;
+                break;
+            }
+        }
+
+        orderAccepted = CheckOrderValidity(true);
+        orderAccepted = CalculateChange();
+
+        if (orderAccepted)
+        {
+            correctOrders++;
+        }
+        else
+        {
+            wrongOrders++;
+        }
+        RefreshOrder();
+    }
+
+    bool CheckOrderValidity(bool accept)
+    {
+        Console.WriteLine("Debugging CheckOrderValidity:");
+
+        // Check if the entire order has a prescription
+        bool hasPrescription = orderComponent.RandomOrder.Any(kvp => kvp.Key.Contains("Prescription: Yes"));
+
+        Console.WriteLine($"Order has prescription: {hasPrescription}");
+
+        // If any medicine requires prescription and the order doesn't have it
+        if (hasPrescription == false && orderQuantities.Keys.Any(key => key == "Insulin" || key == "Antibiotics") && !accept)
+        {
+            Console.WriteLine("Prescription missing and not accepted. Returning true.");
+            return true;
+        }
+
+        // Check if the customer's age allows the purchase of certain items
+        string ageInfo = orderComponent.RandomOrder.Keys.FirstOrDefault(k => k.Contains("Age"));
+        Console.WriteLine(ageInfo);
+        if (ageInfo != null)
+        {
+            string ageString = ageInfo.Split(':')[1].Trim();
+            if (int.TryParse(ageString, out int age))
+            {
+                Console.WriteLine($"Customer's age: {age}");
+
+                if (orderQuantities.ContainsKey("Condom") && age < 18 && !accept)
+                {
+                    Console.WriteLine("Customer is under 18 and attempting to buy a condom. Returning true.");
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Customer is allowed to purchase. Returning false.");
+                    return false;
+                }
+            }
+            else
+            {
+                // Handle invalid age format
+                Console.WriteLine("Invalid age format. Returning false.");
+                return false;
+            }
+        }
+
+        // Default to returning true if no conditions are met
+        Console.WriteLine("No conditions matched. Returning true.");
+        return true;
+    }
+
+
+
+
+
+
+    // Dictionary to store the count of each medicine
+    Dictionary<string, int> medicineCount = new Dictionary<string, int>
+    {
+        { "Antibiotics", 0 },
+        { "Insulin", 0 },
+        { "Ibuprofen", 0 },
+        { "Antihistamines", 0 },
+        { "Cough Syrup", 0 },
+        { "Antacid", 0 },
+        { "Liquid Soap", 0 },
+        { "Cream", 0 },
+        { "Beverage", 0 },
+        { "Condom", 0 }
+    };
+
+    // Method to handle button click and increase medicine count
+    void IncreaseMedicineCount(string medicine)
+    {
+        var selectedMedicine = selectedMedicines.FirstOrDefault(m => m.Name == medicine);
+        if (selectedMedicine != null)
+        {
+            selectedMedicine.Quantity++;
+            selectedMedicine.Price += GetMedicinePrice(medicine);
+        }
+        else
+        {
+            selectedMedicines.Add(new SelectedMedicine { Name = medicine, Quantity = 1, Price = GetMedicinePrice(medicine) });
+        }
+
+        if (medicineCount.ContainsKey(medicine))
+        {
+            medicineCount[medicine]++;
+            Console.WriteLine($"Increased count of {medicine} to {medicineCount[medicine]}");
+        }
+    }
+
+    int GetMedicinePrice(string medicineName)
+    {
+        return medicines.FirstOrDefault(m => m.Name == medicineName)?.Price ?? 0;
+    }
+
+    string ExtractMedicineName(string key)
+    {
+        // Split the key by commas
+        string[] parts = key.Split(',');
+
+        // Extract the first part as the potential medicine name
+        string potentialMedicineName = parts[0].Trim();
+
+        // Check if the potential medicine name exists in our dictionary
+        if (medicineCount.ContainsKey(potentialMedicineName))
+        {
+            // If it does, return it as the medicine name
+            return potentialMedicineName;
+        }
+        else
+        {
+            // Otherwise, iterate through the parts to find the first part that matches a medicine name
+            foreach (string part in parts)
+            {
+                string trimmedPart = part.Trim();
+                if (medicineCount.ContainsKey(trimmedPart))
+                {
+                    // Return the first part that matches a medicine name
+                    return trimmedPart;
+                }
+            }
+        }
+
+        // If nomedicine name is found, return an empty string or handle the situation as needed
+        return "";
+    }
+
+    void EnsureMedicineCountConsistency()
+    {
+        foreach (var key in orderQuantities.Keys)
+        {
+            if (!medicineCount.ContainsKey(key))
+            {
+                medicineCount.Add(key, 0); // Add the medicine to medicineCount if it's not already present
+            }
+        }
+    }
+
+    void AddNumber(int number)
+    {
+        if (currentNumber == 0 && number == 0)
+        {
+            return;
+        }
+
+        // If the current number is 0, set it to the new number.
+        if (currentNumber == 0)
+        {
+            currentNumber = number;
+        }
+        else
+        {
+            // If the current number is not 0, append the new digit to it.
+            currentNumber = currentNumber * 10 + number;
+        }
+
+        // Update the number display only if the current number is not 0.
+        if (currentNumber != 0)
+        {
+            numberDisplay = currentNumber.ToString();
+        }
+    }
+
+    void CalculateTotal()
+    {
+        totalQuantity = selectedMedicines.Sum(m => m.Quantity);
+        totalPrice = selectedMedicines.Sum(m => m.Price);
+        Random random = new Random();
+        customerMoney = random.Next(totalPrice, totalPrice * 2);
+    }
+
+    bool CalculateChange()
+    {
+        int change = customerMoney - totalPrice;
+        int userChange = int.Parse(numberDisplay);
+        if (change != userChange)
+        {
+            Console.WriteLine(change);
+            Console.WriteLine(userChange);
+            return false;
+        }
+        Console.WriteLine(change);
+        Console.WriteLine(userChange);
+        return true;
+    }
+}

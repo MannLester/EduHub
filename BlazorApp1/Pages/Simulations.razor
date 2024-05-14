@@ -1,0 +1,129 @@
+﻿@page "/simulation"
+@using System.Collections.Generic
+
+<Filter></Filter>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="category-buttons">
+                @foreach (var category in categories)
+                {
+                    <button class="category-button @(selectedCategory == category ? "active" : "")" @onclick="() => FilterByCategory(category)">@category</button>
+                }
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="simulations">
+                @foreach (var simulation in filteredSimulations)
+                {
+                    <SimulationBox ImageUrl="@simulation.ImageUrl"
+                               Text="@simulation.Text"
+                               Left="@simulation.Left"
+                               Top="@simulation.Top"
+                               Href ="@simulation.Href"/>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    public class SimulationBox
+    {
+        public string ImageUrl { get; set; }
+        public string Text { get; set; }
+        public string Left { get; set; }
+        public string Top { get; set; }
+        public string Category { get; set; }
+        public string Href { get; set; }
+    }
+
+    List<SimulationBox> simulationBoxData = new List<SimulationBox> {
+        new SimulationBox { ImageUrl = "css/resources/simulations/Doctor.png", Text = "Doctor", Left = "1%", Top = "1%", Category = "HEALTHCARE", Href = "/simulation" },
+        new SimulationBox { ImageUrl = "css/resources/simulations/Bartender.png", Text = "Bartender", Left = "21%", Top = "1%", Category = "ARTS", Href = "/simulation" },
+        new SimulationBox { ImageUrl = "css/resources/simulations/Chef.png", Text = "Chef", Left = "42%", Top = "1%", Category = "ARTS", Href = "/simulation" },
+        new SimulationBox { ImageUrl = "css/resources/simulations/Programmer.png", Text = "Programmer", Left = "63%", Top = "1%", Category = "TECHNOLOGY", Href = "/simulation" },
+        new SimulationBox { ImageUrl = "css/resources/simulations/Architect.png", Text = "Architect", Left = "83%", Top = "1%", Category = "ENGINEERING", Href = "/simulation" },
+        new SimulationBox { ImageUrl = "css/resources/simulations/Biologist.png", Text = "Biologist", Left = "1%", Top = "54%", Category = "FINANCES", Href = "/simulation" },
+        new SimulationBox { ImageUrl = "css/resources/simulations/Painter.png", Text = "Painter", Left = "21%", Top = "54%", Category = "ARTS", Href = "/simulation" },
+        new SimulationBox { ImageUrl = "css/resources/simulations/Veterinary.png", Text = "Veterinarian", Left = "42%", Top = "54%", Category = "HEALTHCARE", Href = "/simulation" },
+        new SimulationBox { ImageUrl = "css/resources/simulations/Soldier.png", Text = "Soldier", Left = "63%", Top = "107%", Category = "EDUCATION", Href = "/simulation" },
+        new SimulationBox { ImageUrl = "css/resources/simulations/Pharmacist.png", Text = "Pharmacist", Left = "42%", Top = "107%", Category = "HEALTHCARE", Href = "/game" },
+        new SimulationBox { ImageUrl = "css/resources/simulations/UrbanPlanner.jpg", Text = "Urban Planner", Left = "83%", Top = "107%", Category = "ENGINEERING", Href = "/city-planning"}
+
+        
+    };
+
+    List<SimulationBox> filteredSimulations = new List<SimulationBox>();
+    string searchText = "";
+    List<string> categories = new List<string> { "HEALTHCARE", "ARTS", "TECHNOLOGY", "ENGINEERING", "FINANCES", "EDUCATION" };
+
+    private string selectedCategory = ""; // Track the selected category
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        filteredSimulations.AddRange(simulationBoxData); // Initially display all simulations
+
+        // Extract categories from simulationBoxData
+        foreach (var simulation in simulationBoxData)
+        {
+            if (!categories.Contains(simulation.Category))
+            {
+                categories.Add(simulation.Category);
+            }
+        }
+    }
+
+    private void FilterByCategory(string category)
+    {
+        searchText = ""; // Clear search text when filtering by category
+
+        if (selectedCategory == category)
+        {
+            // Clicked the same category again, reset to show all simulations
+            selectedCategory = "";
+            filteredSimulations.Clear();
+            filteredSimulations.AddRange(simulationBoxData);
+        }
+        else
+        {
+            selectedCategory = category;
+            filteredSimulations = simulationBoxData
+                .Where(simulation => simulation.Category.Equals(category, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+    }
+
+    private void FilterSimulations()
+    {
+        if (!string.IsNullOrEmpty(searchText))
+        {
+            // Filter simulations based on both text and category
+            filteredSimulations = simulationBoxData
+                .Where(simulation =>
+                    simulation.Text.ToLower().Contains(searchText.ToLower()) ||
+                    simulation.Category.ToLower().Contains(searchText.ToLower()))
+                .ToList();
+        }
+        else if (!string.IsNullOrEmpty(selectedCategory))
+        {
+            filteredSimulations = simulationBoxData
+                .Where(simulation => simulation.Category.Equals(selectedCategory, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+        else
+        {
+            // If search text is empty and no category is selected, show all simulations
+            filteredSimulations.Clear();
+            filteredSimulations.AddRange(simulationBoxData);
+        }
+    }
+
+    private async Task SearchTextChanged(ChangeEventArgs e)
+    {
+        searchText = e.Value.ToString();
+        FilterSimulations();
+        await InvokeAsync(StateHasChanged);
+    }
+}

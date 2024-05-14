@@ -1,0 +1,23 @@
+﻿@using System.Collections.Generic
+@using static BlazorApp1.Pages.Careers
+
+@if (CareerGroups != null)
+{
+    foreach (var group in CareerGroups)
+    {
+        <h3><b>@group.Key</b></h3>
+        <div style="display: flex;">
+            @foreach (var career in group.Value)
+            {
+                <div style="margin-right: 20px; margin-left: 20px;">
+                    <h4>@career.Name</h4>
+                </div>
+            }
+        </div>
+    }
+}
+
+@code {
+    [Parameter]
+    public Dictionary<char, List<CareerItem>> CareerGroups { get; set; }
+}

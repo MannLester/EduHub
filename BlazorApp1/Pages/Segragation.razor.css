@@ -1,0 +1,45 @@
+﻿.game-box {
+    position: absolute;
+    left: 5%;
+    top: 8%;
+    background-color: aliceblue;
+    width: 90%;
+    height: 80%;
+    padding: 20px;
+    border: 2px solid #333;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.col {
+    flex: 1;
+    margin: 5px;
+}
+
+.box {
+    padding: 10px;
+    text-align: center;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+}
+
+.trash {
+    width: 100px;
+    cursor: pointer;
+}
+
+.bio-button {
+    width: 80px;
+    cursor: pointer;
+}

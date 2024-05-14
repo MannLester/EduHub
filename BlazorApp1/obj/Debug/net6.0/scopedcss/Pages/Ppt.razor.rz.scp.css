@@ -1,0 +1,43 @@
+body[b-k9x9sa6okr] {
+    overflow: hidden;
+}
+
+.slides[b-k9x9sa6okr] {
+    width: 100%;
+    height: auto;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.big-slide[b-k9x9sa6okr] {
+    position:absolute;
+    left:36.8%;
+    width: 60%;
+    top: 10%;
+    height: auto;
+    z-index:0;
+}
+
+.back[b-k9x9sa6okr] {
+    position: absolute;
+    left: 38.5%;
+    top: 40%;
+    font-size: 10px;
+    transform: scale(2);
+    color: navajowhite;
+    border-radius: 20px;
+    z-index: 2;
+}
+
+.back-bg[b-k9x9sa6okr] {
+    position: absolute;
+    width: 80px;
+    height: 4vh;
+    left: 90%;
+    top: 115%;
+    transform: scale(2);
+    border-radius: 15px;
+    background-color: #6D2932;
+    border: 1px solid black;
+    z-index: 1;
+}

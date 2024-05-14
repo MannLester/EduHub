@@ -1,0 +1,216 @@
+﻿body {
+}
+
+.searchbar {
+    position: absolute;
+    border-radius: 5px;
+    width: 24%;
+    top: 15.5%;
+    left: 1%;
+    height: 7vh;
+    background-color: #C7B7A3;
+    text-align: center;
+    color: #6D2932;
+    padding: 16px 10px 10px 10px;
+}
+
+.searchbox {
+    width: 90%;
+    height: 3.5vh;
+}
+
+.chatbox {
+    position: absolute;
+    width: 24%;
+    height: 30vh;
+    top: 25%;
+    left: 1%;
+    text-align: center;
+}
+
+.chat {
+    position: absolute;
+    width: 72%;
+    top: 25%; 
+    left: 26%;
+    height: 53.5vh; 
+    background-color: #D2B48C;
+    border: 2px solid black;
+    text-align: center;
+    color: #6D2932;
+    overflow-y: auto; 
+    display: flex; /* Use flexbox to center messages vertically */
+    flex-direction: column; /* Arrange messages vertically */
+    justify-content: flex-start; /* Align messages to the top */
+    align-items: center; /* Center messages horizontally */
+    padding-top: 20px; /* Add padding to create space at the top */
+}
+
+
+
+.typing {
+    position: absolute;
+    border-radius: 3px;
+    width: 72%;
+    top: 88%;
+    left: 26%;
+    height: 8vh;
+    background-color: #6D2932;
+    text-align: center;
+    color: blue;
+    border: 2px solid black;
+    padding: 16px 10px 10px 20px;
+}
+
+.typebox {
+    width: 92%;
+    height: 4vh;
+}
+/* Add CSS classes for styling messages */
+.sender {
+    position: absolute;
+    border-radius: 13px;
+    width: 41%;
+    top: 58%;
+    left: 27%;
+    height: 8vh;
+    background-color: #F2F2F0;
+    text-align: center;
+    color: #6D2932;
+}
+
+.receiver {
+    position: absolute;
+    border-radius: 13px;
+    width: 41%;
+    top: 69%;
+    left: 50%;
+    height: 8vh;
+    background-color: #F2F2F0;
+    text-align: center;
+    color: #6D2932;
+}
+
+.right-aligned-image {
+    float: right;
+    margin-left: 10px; /* Adjust the margin as needed */
+    width: 50px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+}
+
+.left-aligned-image {
+    float: left;
+    margin-right: 10px; /* Adjust the margin as needed */
+    width: 50px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+}
+
+
+.user-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #561C24;
+    color: white;
+    cursor: pointer; /* Make the user-box clickable */
+}
+
+    .user-box:hover {
+        background-color: #f0f0f0; /* Change background color on hover */
+    }
+
+    .user-box input[type="radio"] {
+        margin-right: 5px; /* Adjust spacing between radio button and label */
+    }
+
+    .user-box label {
+        cursor: pointer; /* Make the label clickable */
+    }
+
+.message-container {
+    padding: 5px;
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    padding: 10px; /* Add padding */
+    margin-bottom: 10px; /* Add margin between messages */
+    border-radius: 20px; /* Make the message container circular */
+    background-color: #D2B48C; /* Set the background color to brownish */
+}
+
+.profile-picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.message-content {
+    overflow-x: auto; /* Add horizontal scrollbar if content exceeds */
+}
+
+.content {
+    padding-right: 10px; /* Add spacing between image and content */
+}
+
+.sender-message {
+    position: relative;
+    left: 345px;
+    display: flex;
+    width: 600px;
+    align-items: center;
+    color: antiquewhite;
+    justify-content: flex-end;
+    padding: 10px; /* Add padding */
+    margin-bottom: 10px; /* Add margin between messages */
+    border-radius: 20px; /* Make the message container circular */
+    background-color: #561C24; /* Set the background color to brownish for sender */
+}
+
+    .sender-message .profile-picture {
+        order: 2; /* Set the order to display profile picture on the right */
+        margin-left: 10px; /* Add margin between content and profile picture */
+    }
+
+    .sender-message .message-content {
+        order: 1; /* Set the order to display message content before profile picture */
+        overflow-x: auto; /* Add horizontal scrollbar if content exceeds */
+        text-align: right; /* Align message content to the right */
+    }
+
+.receiver-message {
+    position: relative;
+    right: 345px;
+    display: flex;
+    width: 600px;
+    align-items: center;
+    padding: 10px; /* Add padding */
+    margin-bottom: 10px; /* Add margin between messages */
+    border-radius: 20px; /* Make the message container circular */
+    background-color: #E8D8C4; /* Set the background color to grayish for receiver */
+}
+
+.receiver-name {
+    position: relative;
+    top: 113px;
+    left: 26%;
+    width: 72%;
+    height: 10vh;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 18px 10px 10px 45px;
+    font-size: 25px;
+    color: #561C24;
+}
+
+.selected {
+    background-color: #f0f0f0; /* Change background color */
+    font-weight: bold; /* Make text bold */
+    /* Add any other styles to indicate selection */
+}

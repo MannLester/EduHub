@@ -1,0 +1,325 @@
+﻿@page "/chats"
+@using Google.Cloud.Firestore
+@inject NavigationManager NavigationManager
+@using Microsoft.JSInterop
+@inject IJSRuntime JSRuntime
+@using System.IO
+@using System.Linq
+@using System.Threading.Tasks
+@using System.Collections.Generic
+@using System
+@using BlazorApp1.Shared
+
+<CommunityMenu></CommunityMenu>
+<div class="searchbar">
+    <input type="text" placeholder="Search..." class="searchbox" @bind="searchText" id="searchInput" @oninput="SearchTextChanged" />
+</div>
+
+<div class="chatbox">
+    @foreach (var user in filteredUsers)
+    {
+        @if (user.Id != currentUserId)
+        {
+            <div class="user-box" @onclick="() => HandleRecipientSelection(user.Id)">
+                <img src="@($"{root}//{user.ProfilePictureUrl}")" alt="Profile Picture" class="profile-picture" />
+                <label style="margin-left: 10px;">@user.Username</label>
+            </div>
+        }
+    }
+</div>
+
+
+<div class="receiver-name">
+    @if (!string.IsNullOrEmpty(selectedRecipient))
+    {
+        var receiver = users.FirstOrDefault(u => u.Id == selectedRecipient);
+        <b> <img src="@($"{root}//{receiver?.ProfilePictureUrl}")" alt="Profile Picture" class="profile-picture" /> @receiver?.Username</b>
+    }
+</div>
+
+<div class="chat">
+    <div class="message-container" id="chatContainer">
+        @foreach (var message in userMessages)
+        {
+            <div class="message @(IsSender(message.SenderId) ? "sender-message" : "receiver-message")">
+                @if (IsSender(message.SenderId))
+                {
+                    <div class="message-content text-right">
+                        @message.MessageContent
+                    </div>
+                    <img src="@($"{root}//{message.SenderProfilePictureUrl}")" alt="Profile Picture" class="profile-picture right-aligned-image" />
+                }
+                else
+                {
+                    <img src="@($"{root}//{message.SenderProfilePictureUrl}")" alt="Profile Picture" class="profile-picture left-aligned-image" />
+                    <div class="message-content">
+                        <strong></strong> @message.MessageContent
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+<div class="typing">
+    <input type="text" placeholder="Type your message..." class="typebox" @bind="messageContent" />
+    <button @onclick="SendMessage" disabled="@string.IsNullOrEmpty(messageContent)">
+        Send
+    </button>
+</div>
+
+@code {
+    FirestoreDb db = FirestoreDb.Create("oop-try");
+
+    public class User
+    {
+        public string Id { get; set; }
+        public string Username { get; set; }
+        public string ProfilePictureUrl { get; set; } // Add ProfilePictureUrl property
+    }
+
+    public class Message
+    {
+        public string SenderId { get; set; }
+        public string ReceiverId { get; set; }
+        public string SenderUsername { get; set; }
+        public string SenderProfilePictureUrl { get; set; } // Add SenderProfilePictureUrl property
+        public string MessageContent { get; set; }
+        public string Timestamp { get; set; } // Add timestamp property
+    }
+
+    string selectedRecipient = "";
+    string messageContent = "";
+    string errorMessage = "";
+    string currentUserId = ""; // Variable to store the ID of the logged-in user
+    string root = "css/bootstrap/"; // Add the root string here
+    List<User> users = new List<User>(); // Populate this list with users from the database
+    List<Message> userMessages = new List<Message>(); // List to store messages between the current user and the selected recipient
+    string searchText = "";
+    List<User> filteredUsers = new List<User>();
+
+    // Check if the message is sent by the current user
+    private bool IsSender(string senderId)
+    {
+        if (senderId == null)
+        {
+            // Handle the case where senderId is null (e.g., log an error, return a default value)
+            return true; // Or return a default value based on your application's logic
+        }
+        else
+        {
+            // Compare senderId with currentUserId
+            return senderId == currentUserId;
+        }
+    }
+
+    // Fetch users from the database
+    protected override async Task OnInitializedAsync()
+    {
+        users = await GetUsers();
+        filteredUsers = users;
+
+        try
+        {
+            if (File.Exists("successful_logins.txt"))
+            {
+                string username = File.ReadAllText("successful_logins.txt").Trim();
+                currentUserId = GetUserIdByUsername(username);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error reading file: " + ex.Message);
+        }
+        Console.WriteLine("current user id: {0}", currentUserId);
+        await LoadMessages();
+    }
+
+    // Retrieve users from Firestore Users collection
+    private async Task<List<User>> GetUsers()
+    {
+        CollectionReference collection = db.Collection("Users");
+        QuerySnapshot docs = await collection.GetSnapshotAsync();
+
+        var userList = new List<User>();
+        foreach (var doc in docs.Documents)
+        {
+            userList.Add(new User { Id = doc.Id, Username = doc.GetValue<string>("username"), ProfilePictureUrl = doc.GetValue<string>("iconpfp") });
+            Console.WriteLine($"User: {doc.GetValue<string>("username")}, Profile Picture URL: {doc.GetValue<string>("iconpfp")}");
+        }
+        return userList;
+    }
+
+    // Get user ID by username from Firestore Users collection
+    private string GetUserIdByUsername(string username)
+    {
+        foreach (var user in users)
+        {
+            if (user.Username == username)
+            {
+                return user.Id;
+            }
+        }
+        return null; // Return null if username is not found
+    }
+
+    // Load messages between the current user and the selected recipient
+    private async Task LoadMessages()
+    {
+        if (!string.IsNullOrEmpty(currentUserId) && !string.IsNullOrEmpty(selectedRecipient))
+        {
+            CollectionReference messagesCollection = db.Collection("Messages");
+
+            QuerySnapshot senderMessages = await messagesCollection
+                .WhereEqualTo("senderId", currentUserId)
+                .WhereEqualTo("receiverId", selectedRecipient)
+                .GetSnapshotAsync();
+
+            QuerySnapshot receiverMessages = await messagesCollection
+                .WhereEqualTo("senderId", selectedRecipient)
+                .WhereEqualTo("receiverId", currentUserId)
+                .GetSnapshotAsync();
+
+            userMessages.Clear();
+
+            foreach (var doc in senderMessages.Documents)
+            {
+                string senderId = doc.GetValue<string>("senderId");
+                string senderUsername = await GetUsernameById(senderId); // Fetch sender's username
+                string messageContent = doc.GetValue<string>("message");
+                Timestamp timestamp = doc.GetValue<Timestamp>("timestamp");
+                string timestampString = timestamp != null ? timestamp.ToDateTime().ToString() : null;
+
+                //Console.WriteLine("inside foreach: {0}", senderId);
+
+                if (!string.IsNullOrEmpty(timestampString))
+                {
+                    userMessages.Add(new Message
+                        {
+                            SenderUsername = senderUsername,
+                            SenderProfilePictureUrl = await GetProfilePictureUrl(senderId), // Fetch sender's profile picture URL
+                            MessageContent = messageContent,
+                            Timestamp = timestampString
+                        });
+                }
+            }
+
+            foreach (var doc in receiverMessages.Documents)
+            {
+                string senderId = doc.GetValue<string>("senderId");
+                string senderUsername = await GetUsernameById(senderId); // Fetch sender's username
+                string messageContent = doc.GetValue<string>("message");
+                Timestamp timestamp = doc.GetValue<Timestamp>("timestamp");
+                string timestampString = timestamp != null ? timestamp.ToDateTime().ToString() : null;
+
+                //Console.WriteLine("inside another foreach: {0}", senderId);
+
+
+                if (!string.IsNullOrEmpty(timestampString))
+                {
+                    userMessages.Add(new Message
+                        {
+                            SenderId = senderId, // Set the SenderId property
+                            SenderUsername = senderUsername,
+                            SenderProfilePictureUrl = await GetProfilePictureUrl(senderId), // Fetch sender's profile picture URL
+                            MessageContent = messageContent,
+                            Timestamp = timestampString
+                        });
+                }
+            }
+
+            userMessages.Sort((msg1, msg2) => DateTime.Parse(msg1.Timestamp).CompareTo(DateTime.Parse(msg2.Timestamp)));
+        }
+    }
+
+    // Get username by user ID
+    private async Task<string> GetUsernameById(string userId)
+    {
+        var userDoc = await db.Collection("Users").Document(userId).GetSnapshotAsync();
+        return userDoc.Exists ? userDoc.GetValue<string>("username") : string.Empty;
+    }
+
+    // Get profile picture URL by user ID
+    private async Task<string> GetProfilePictureUrl(string userId)
+    {
+        var userDoc = await db.Collection("Users").Document(userId).GetSnapshotAsync();
+        Console.WriteLine(userDoc);
+        return userDoc.Exists ? userDoc.GetValue<string>("iconpfp") : string.Empty;
+    }
+
+    private async Task SendMessage()
+    {
+        if (string.IsNullOrEmpty(selectedRecipient) || string.IsNullOrEmpty(messageContent))
+        {
+            errorMessage = "Please select a recipient and enter a message.";
+            return;
+        }
+
+        try
+        {
+            CollectionReference messagesCollection = db.Collection("Messages");
+            await messagesCollection.AddAsync(new
+            {
+                senderId = currentUserId, // Use the ID of the logged-in user
+                receiverId = selectedRecipient,
+                message = messageContent,
+                timestamp = DateTime.UtcNow,
+                isRead = false
+            });
+
+            // Clear message content after sending
+            messageContent = "";
+            errorMessage = "";
+
+            // Reload messages after sending
+            await LoadMessages();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error sending message: {ex.Message}";
+        }
+        await ScrollToBottom();
+    }
+
+
+    // Handle recipient selection
+    private async Task HandleRecipientSelection(string userId)
+    {
+        selectedRecipient = userId;
+        await LoadMessages();
+    }
+
+    private void FilterUsers()
+    {
+        if (!string.IsNullOrEmpty(searchText))
+        {
+            filteredUsers = users.Where(u => u.Username.ToLower().Contains(searchText.ToLower())).ToList();
+        }
+        else
+        {
+            filteredUsers = users;
+        }
+    }
+
+    private async Task SearchTextChanged(ChangeEventArgs e)
+    {
+        searchText = e.Value.ToString();
+        FilterUsers();
+        await InvokeAsync(StateHasChanged);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await ScrollToBottom();
+            await JSRuntime.InvokeVoidAsync("focusElement", "searchInput");
+        }
+    }
+
+    private async Task ScrollToBottom()
+    {
+        Console.WriteLine("Scrolling to bottom...");
+        await JSRuntime.InvokeVoidAsync("scrollToBottom", "chatContainer");
+    }
+}

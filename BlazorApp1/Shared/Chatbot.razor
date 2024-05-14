@@ -1,0 +1,120 @@
+﻿@page "/chatbot"
+
+<h1 style="position:absolute; left:5%; top:18%; font-family: Arial; text-align: center; color: #6D2932;">Chat with AI</h1>
+
+<div style="position:absolute; left:1%; top: 25%; width: 350px; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #6D2932; border: solid 2px black;">
+    <div style="height: 300px; overflow-y: auto; margin-bottom: 20px; background-color:#6D2932;">
+        @foreach (var message in messages)
+        {
+            <div style="padding: 8px; border-radius: 8px; margin-bottom: 15px; @(message.IsUser ? "background-color: #E8D8C4; color: black; float: right;" : "background-color: #f0f0f0; color: #000; float: left;")">@message.Content</div>
+            <div style="clear: both;"></div>
+        }
+    </div>
+
+    <div style="display: flex; margin-bottom: 20px;">
+        <input @bind="userMessage" @onkeyup="OnKeyPress" style="flex: 1; padding: 8px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px;" />
+        <button @onclick="SendMessage" style="padding: 8px 16px; font-size: 16px; border: none; border-radius: 4px; background-color: #E8D8C4; color: #6D2932;"><b>Send</b></button>
+    </div>
+</div>
+
+@code {
+    private string userMessage;
+    private List<Message> messages = new List<Message>();
+
+    private bool isFirstMessage = true;
+    private bool botInitiated = false;
+    private int botResponseIndex = -1; // Start from the first response
+
+    protected override void OnInitialized()
+    {
+        // Add initial bot message when component initializes
+        messages.Add(new Message { Content = "Hello, I am an AI. How can I assist you?", IsUser = false });
+        botInitiated = true;
+    }
+
+    private async Task SendMessage()
+    {
+        if (!string.IsNullOrWhiteSpace(userMessage))
+        {
+            // Add user message to the list
+            messages.Add(new Message { Content = userMessage, IsUser = true });
+
+            if (userMessage.Contains("hello", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("hi", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("hey", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("sup", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("what's up", StringComparison.OrdinalIgnoreCase))
+            {
+                messages.Add(new Message { Content = "Hi there! How can I help you?" });
+            }
+            else if (userMessage.Contains("bye", StringComparison.OrdinalIgnoreCase))
+            {
+                messages.Add(new Message { Content = "Goodbye! Have a great day." });
+            }
+            else if ((userMessage.Contains("navigate", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("where", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("access", StringComparison.OrdinalIgnoreCase)) && (userMessage.Contains("simualtions", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("simulation", StringComparison.OrdinalIgnoreCase)))
+            {
+                messages.Add(new Message
+                    {
+                        Content = "To navigate to the Simulations tab, you can find it in the navigation bar at the top of the EduHub homepage.It’s located next to the “Home” tab.Clicking on it will take you to a page where you can explore a variety of simulations across different career paths." });
+            }
+            else if ((userMessage.Contains("navigate", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("where", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("access", StringComparison.OrdinalIgnoreCase)) && (userMessage.Contains("modules", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("module", StringComparison.OrdinalIgnoreCase)))
+            {
+                messages.Add(new Message
+                    {
+                        Content = "The Modules section is also located in the navigation bar. It’s next to the “Simulations” tab.By clicking on it, you’ll be directed to a page that lists all the educational modules available on EduHub.These modules cover a wide range of topics and are designed to provide comprehensive learning experiences."
+                    });
+            }
+            else if ((userMessage.Contains("navigate", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("where", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("access", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("contain", StringComparison.OrdinalIgnoreCase)) && (userMessage.Contains("careers", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("career", StringComparison.OrdinalIgnoreCase)))
+            {
+                messages.Add(new Message
+                    {
+                        Content = "The Careers tab is located next to the “Modules” tab in the navigation bar. This section provides information about various career paths and the corresponding simulations and modules available on EduHub. It’s a great resource for users who are exploring different career options or looking for resources related to their chosen field."
+                    });
+            }
+            else if ((userMessage.Contains("navigate", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("where", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("access", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("contain", StringComparison.OrdinalIgnoreCase)) && userMessage.Contains("community", StringComparison.OrdinalIgnoreCase))
+            {
+                messages.Add(new Message
+                    {
+                        Content = "The Community forum can be accessed by clicking on the “Community” option in the navigation bar. This is a space where users can engage in discussions, ask questions, share insights, and learn from each other. It’s a great way to connect with other learners and professionals."
+                    });
+            }
+            else if (userMessage.Contains("purpose", StringComparison.OrdinalIgnoreCase) && (userMessage.Contains("eduhub", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("", StringComparison.OrdinalIgnoreCase)))
+            {
+                messages.Add(new Message
+                    {
+                        Content = "The purpose of the EduHub website is to provide an interactive and comprehensive learning platform. It offers a variety of simulations and modules across various career paths, helping users gain practical skills and knowledge in their chosen field. EduHub aims to make learning accessible and engaging for everyone."
+                    });
+            }
+            else if ((userMessage.Contains("help", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("aid", StringComparison.OrdinalIgnoreCase)) && (userMessage.Contains("career", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("growth", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("", StringComparison.OrdinalIgnoreCase)) && (userMessage.Contains("eduhub", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("", StringComparison.OrdinalIgnoreCase)))
+            {
+                messages.Add(new Message
+                    {
+                        Content = "EduHub can contribute to your career growth by providing practical simulations and informative modules that can enhance your skills and knowledge. By using EduHub, you can explore different career paths, learn new skills, and gain insights into various professional scenarios."
+                    });
+            }
+            else if ((userMessage.Contains("prerequisite", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("pre requisite", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("requirements", StringComparison.OrdinalIgnoreCase)) && (userMessage.Contains("eduhub", StringComparison.OrdinalIgnoreCase) || userMessage.Contains("", StringComparison.OrdinalIgnoreCase)))
+            {
+                messages.Add(new Message
+                    {
+                        Content = "■ There are no prerequisites for using the EduHub website. It’s designed to be user - friendly and accessible to everyone, regardless of their background or level of expertise.Whether you’re a student, a professional, or just someone interested in learning, EduHub has resources to help you on your learning journey"
+                    });
+            }
+            else
+            {
+                messages.Add(new Message { Content = "I'm sorry, I don't understand." });
+            }
+
+            userMessage = "";
+        }
+    }
+
+    private void OnKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            SendMessage();
+        }
+    }
+
+    public class Message
+    {
+        public string Content { get; set; }
+        public bool IsUser { get; set; }
+    }
+}

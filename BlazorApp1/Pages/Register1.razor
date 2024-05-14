@@ -1,0 +1,135 @@
+﻿@page "/Register"
+@using Google.Cloud.Firestore
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+@layout Shared.LoginLayout
+@using BlazorApp1.Shared
+
+<h3 class="register-text"><b>REGISTER</b></h3>
+<img src="css/resources/login_bg.jpg" class="background-image" />
+<img src="css/resources/EduHub_Logo.png" class="logo-image" />
+<p>
+<p class="username-text">Username</p>
+<input @bind="newUsername" id="username" />
+<p class="password-text">Password</p>
+<input @bind="newPassword" id="password" type="password" />
+<p class="verify-password">Verify Password</p>
+<input @bind="verifyPassword" id="verify-password" type="password" />
+<button @onclick="RegisterWithEmailPassword" class="register-button">Register</button>
+</p>
+
+@foreach (var user in users)
+{
+    <p>
+        <b>* @user.Id</b>
+        <b>* @user.Username</b>
+        <b>* @user.Password</b>
+    </p>
+}
+
+@code {
+    private FirestoreDb db = FirestoreDb.Create("oop-try");
+
+    public class User
+    {
+        [FirestoreProperty]
+        public string Id { get; set; }
+
+        [FirestoreProperty]
+        public string Username { get; set; }
+
+        [FirestoreProperty]
+        public string Email { get; set; }
+
+        [FirestoreProperty]
+        public string Password { get; set; }
+
+        [FirestoreProperty]
+        public string IconPfp { get; set; }
+    }
+
+    private List<User> users = new List<User>();
+    private string newUsername = "";
+    private string newEmail = "";
+    private string newPassword = "";
+    private string verifyPassword = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await RefreshList();
+    }
+
+    private async Task RefreshList()
+    {
+        try
+        {
+            CollectionReference collection = db.Collection("Users");
+            QuerySnapshot docs = await collection.GetSnapshotAsync();
+
+            users = docs.Documents.Select(doc => new User
+            {
+                Id = doc.Id,
+                Username = doc.GetValue<string>("username"),
+                Password = doc.GetValue<string>("password"),
+                IconPfp = doc.ContainsField("iconpfp") ? doc.GetValue<string>("iconpfp") : null
+                }).ToList();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error refreshing user list: " + ex.Message);
+        }
+    }
+
+    private string GetRandomString()
+    {
+        string[] stringsArray = { "pic1.jpg", "pic2.jpg", "pic3.jpg" };
+        Random random = new Random();
+        int index = random.Next(0, stringsArray.Length);
+        return stringsArray[index];
+    }
+    private async Task RegisterWithEmailPassword()
+    {
+        try
+        {
+            //if (newPassword != verifyPassword)
+            //{
+            //    Console.WriteLine("Passwords do not match.");
+            //    return;
+            //}
+
+            //var auth = await JSRuntime.InvokeAsync<IJSObjectReference>("eval", "window.auth");
+
+            //if (auth != null)
+            //{
+            //var authResult = await auth.InvokeAsync<IJSObjectReference>("createUserWithEmailAndPassword", newEmail, newPassword);
+
+            //if (authResult != null && await authResult.InvokeAsync<bool>("hasOwnProperty", "user"))
+            //{
+            CollectionReference collection = db.Collection("Users");
+            await collection.AddAsync(new
+            {
+                username = newUsername,
+                email = newEmail,
+                password = newPassword,
+                iconpfp = GetRandomString()
+            });
+
+            await RefreshList();
+            NavigationManager.NavigateTo("/login");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("User creation failed.");
+            //}
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Authentication object not found.");
+            //}
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error registering user: " + ex.Message);
+        }
+    }
+}

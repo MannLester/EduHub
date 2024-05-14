@@ -1,0 +1,68 @@
+﻿@page "/"
+@namespace BlazorApp1.Pages
+@using System.Linq
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+
+<!-- Include Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js"></script>
+
+<!-- Initialize Firebase and export auth and db objects -->
+<script>
+    // Your Firebase config
+    const firebaseConfig = {
+        apiKey: "AIzaSyBUlXw5wDX0F1FYnBpewY5fk590XTIA0_w",
+        authDomain: "oop-try.firebaseapp.com",
+        projectId: "oop-try",
+        storageBucket: "oop-try.appspot.com",
+        messagingSenderId: "830646294247",
+        appId: "1:830646294247:web:2d85ed8bc8df821b47f442"
+    };
+
+    // Function to initialize Firebase and export auth and db objects
+    function initializeFirebase() {
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Export Firebase auth and firestore objects
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // Export auth and db objects to be used in Blazor component
+        window.auth = auth;
+        window.db = db;
+    }
+</script>
+
+<script src="~/scrollFunctions.js"></script>
+
+
+<script src="/firebase.js"></script> <!-- Add this script import -->
+
+<component type="typeof(App)" render-mode="ServerPrerendered" />
+
+<!-- Ensure Firebase is initialized after loading Firebase SDK -->
+<script>
+    initializeFirebase();
+</script>
+
+<script>
+    window.focusElement = function (elementId) {
+        var element = document.getElementById(elementId);
+        if (element) {
+            element.focus();
+        }
+    };
+</script>
+
+<script>
+    window.scrollToBottom = function (elementId) {
+        var element = document.getElementById(elementId);
+        if (element) {
+            element.scrollTop = element.scrollHeight;
+        }
+    };</script>

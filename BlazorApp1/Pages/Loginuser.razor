@@ -1,0 +1,106 @@
+﻿@using Google.Cloud.Firestore;
+@inject NavigationManager NavigationManager
+@layout Shared.LoginLayout
+@using BlazorApp1.Shared
+
+@page "/login"
+
+<h3 class="login-text" ><b>LOGIN</b></h3>
+<img src="css/resources/login_bg.jpg" class="background-image"/>
+<img src="css/resources/EduHub_Logo.png" class="logo-image" />
+<p>
+    <h4 class="username-text"><b>Username</b></h4>
+    <input @bind="username" id="username"/>
+    <h4 class="password-text"><b>Password</b></h4>
+    <input @bind="password" type="password" id="password"/>
+    <button @onclick="Login" class="login-button">Log In</button>
+</p>
+
+@code {
+    FirestoreDb db = FirestoreDb.Create("oop-try");
+
+    public class User
+    {
+        [FirestoreProperty]
+        public string Id { get; set; }
+
+        [FirestoreProperty]
+        public string? Username { get; set; }
+
+        [FirestoreProperty]
+        public string? Password { get; set; }
+
+        public User()
+        {
+            Id = string.Empty;
+            Username = string.Empty;
+            Password = string.Empty;
+        }
+    }
+
+    string username = "";
+    string password = "";
+
+    private async Task<List<User>> GetUsers()
+    {
+        CollectionReference collection = db.Collection("Users");
+        QuerySnapshot docs = await collection.GetSnapshotAsync();
+
+        var users = new List<User>();
+        foreach (var doc in docs.Documents)
+        {
+            users.Add(new User { Id = doc.Id, Username = doc.GetValue<string>("username"), Password = doc.GetValue<string>("password") });
+        }
+        return users;
+    }
+
+    private async Task<bool> UserExists(string username)
+    {
+        var users = await GetUsers();
+        return users.Any(u => u.Username == username);
+    }
+
+    private async Task<bool> VerifyPassword(string username, string password)
+    {
+        var users = await GetUsers();
+        var user = users.FirstOrDefault(u => u.Username == username);
+        return user != null && user.Password == password;
+    }
+
+    private async Task Login()
+    {
+        try
+        {
+            if (await UserExists(username))
+            {
+                if (await VerifyPassword(username, password))
+                {
+                    // Redirect to post page or perform other actions upon successful login
+                    NavigationManager.NavigateTo($"/home");
+
+                    // Clear file content before writing username (overwrite mode)
+                    using (StreamWriter writer = new StreamWriter("successful_logins.txt"))
+                    {
+                        writer.WriteLine(username);
+                    }
+                }
+                else
+                {
+                    // Password is incorrect
+                    // Handle invalid password
+                }
+            }
+            else
+            {
+                // Username doesn't exist
+                // Handle invalid username
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error: " + ex.Message);
+        }
+    }
+
+
+}

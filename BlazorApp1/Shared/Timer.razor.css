@@ -1,0 +1,70 @@
+﻿body {
+}
+
+.popup{
+    position:absolute;
+    top:30%;
+    left:25%;
+    border: 2px solid black;
+    width:48%;
+    height:40vh;
+    z-index:2;
+    background-color:navajowhite;
+}
+
+.timer {
+    position: absolute;
+    top: 6%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+    font-size: 3em;
+    z-index:0;
+}
+
+.result-label {
+    position: absolute;
+    left: 25%;
+    top: 3%;
+    letter-spacing: 5px;
+    color: #6D2932;;
+}
+
+.correct-order {
+    position: absolute;
+    left: 12%;
+    top: 18%;
+    letter-spacing: 3px;
+    color: #6D2932;
+}
+
+.wrong-order {
+    position: absolute;
+    left: 12%;
+    top: 30%;
+    letter-spacing: 3px;
+    color: #6D2932;
+}
+
+.total-order {
+    position: absolute;
+    left: 12%;
+    top: 42%;
+    letter-spacing: 3px;
+    color: #6D2932;
+}
+
+.rating {
+    position: absolute;
+    top: 63%;
+    left: 20%;
+    letter-spacing: 5px;
+    color: #6D2932;
+}
+
+.back-button {
+    position: absolute;
+    top: 80%;
+    left: 40%;
+    transform: scale(1.5);
+    color: #6D2932;
+}

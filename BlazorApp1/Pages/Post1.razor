@@ -1,0 +1,138 @@
+﻿@page "/post"
+@inject NavigationManager NavigationManager
+@using Google.Cloud.Firestore;
+@using System;
+@using System.Collections.Generic;
+@using System.IO;
+@using System.Linq;
+@using System.Threading.Tasks;
+@using BlazorApp1.Shared
+
+<CommunityMenu></CommunityMenu>
+<div class="Post-textbox">
+    <input type="text" class="PostText" @bind=" newPost" placeholder="What's on your mind?" />
+</div>
+
+<div class="postbutton">
+    <button @onclick="addNewPost">CLICK TO POST!</button>
+</div>
+
+<div class="content">
+    @foreach (var post in posts)
+    {
+        <div class="post">
+            <img src="@($"{root}//{post.ProfilePictureUrl}")" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%;" />
+            <span><b>@post.username</b></span>
+            <div>
+                <b>@post.postcontent </b>
+            </div>
+            <span>@post.created_at</span>
+        </div>
+
+    }
+</div>
+
+
+@code {
+    string root = "css/bootstrap/";
+    FirestoreDb db = FirestoreDb.Create("oop-try");
+
+    public class Post
+    {
+        [FirestoreProperty]
+        public string Id { get; set; }
+
+        [FirestoreProperty]
+        public string? postcontent { get; set; }
+
+        [FirestoreProperty]
+        public string? username { get; set; }
+
+        [FirestoreProperty]
+        public string? created_at { get; set; }
+
+        [FirestoreProperty]
+        public string? ProfilePictureUrl { get; set; }
+
+        public Post()
+        {
+            Id = string.Empty;
+            postcontent = string.Empty;
+            username = string.Empty;
+            created_at = string.Empty;
+        }
+    }
+
+    private IEnumerable<Post> posts = Array.Empty<Post>();
+    string newPost = "";
+    string newUsername = "";
+
+    private async Task refreshList()
+    {
+        Dictionary<string, string> userData = new Dictionary<string, string>();
+        CollectionReference usersCollection = db.Collection("Users");
+        QuerySnapshot usersSnapshot = await usersCollection.GetSnapshotAsync();
+        foreach (var userDoc in usersSnapshot.Documents)
+        {
+            string username = userDoc.GetValue<string>("username");
+            string profilePictureUrl = userDoc.Exists ? userDoc.GetValue<string>("iconpfp") : null;
+            userData[username] = profilePictureUrl;
+        }
+
+        CollectionReference postsCollection = db.Collection("Posts");
+        QuerySnapshot postsSnapshot = await postsCollection.GetSnapshotAsync();
+
+        var list = new List<Post>();
+
+        foreach (var postDoc in postsSnapshot.Documents)
+        {
+            string postId = postDoc.Id;
+            string postContent = postDoc.GetValue<string>("post");
+            string username = postDoc.GetValue<string>("username");
+            string createdAt = postDoc.GetValue<string>("created_at");
+            string profilePictureUrl = userData.ContainsKey(username) ? userData[username] : null;
+
+            list.Add(new Post
+                {
+                    Id = postId,
+                    postcontent = postContent,
+                    username = username,
+                    created_at = createdAt,
+                    ProfilePictureUrl = profilePictureUrl
+                });
+        }
+
+        posts = list;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await refreshList();
+
+        try
+        {
+            if (File.Exists("successful_logins.txt"))
+            {
+                newUsername = File.ReadAllText("successful_logins.txt").Trim();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error reading file: " + ex.Message);
+        }
+    }
+
+    private async Task addNewPost()
+    {
+        CollectionReference collection = db.Collection("Posts");
+        string createdAt = DateTime.UtcNow.ToString("MMMM d, yyyy 'at' h:mm:ss tt 'UTC'zzz");
+
+        await collection.AddAsync(new { username = newUsername, post = newPost, created_at = createdAt });
+        await refreshList();
+    }
+
+    private async Task gotochat()
+    {
+        NavigationManager.NavigateTo($"/chat");
+    }
+}

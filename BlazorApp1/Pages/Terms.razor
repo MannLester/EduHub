@@ -1,0 +1,56 @@
+﻿@page "/terms"
+@inject NavigationManager NavigationManager
+@using System.IO
+
+@if (username == "name1")
+{
+    <div class="profile-pic"><img src="css/bootstrap/pic2.jpg" /></div>
+}
+else
+{
+    <div class="profile-pic"><img src="css/bootstrap/pic1.jpg" /></div>
+}
+
+<NavLink href="/account">
+    <div class="account-settings"><h1>Account Settings</h1></div>
+</NavLink>
+<NavLink href="@profileHref">
+<div class="terms-conditions"><h1>Terms and Conditions</h1></div>
+</NavLink>
+<div class="Profile-form"><h1>Terms and Conditions</h1><br /><h3>We get Uno, you get the effort we put in this project</h3></div>
+@code {
+
+    private string currentPath = "";
+    private string username = "";
+    private string profileHref = "";
+
+    protected override void OnInitialized()
+    {
+        // Get the current URL path
+        currentPath = NavigationManager.Uri;
+
+        // Subscribe to the LocationChanged event to update the currentPath variable
+        NavigationManager.LocationChanged += HandleLocationChanged;
+
+        try
+        {
+            // Read the username from the file
+            username = File.ReadAllText("successful_logins.txt").Trim();
+            Console.WriteLine("Username read from file: " + username); // Debugging statement
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error reading file: " + ex.Message);
+        }
+
+        profileHref = "/profile/" + username;
+        base.OnInitialized();
+    }
+
+    // Method to handle location changes
+    private void HandleLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    {
+        currentPath = e.Location;
+        StateHasChanged(); // Notify Blazor to re-render the component
+    }
+}

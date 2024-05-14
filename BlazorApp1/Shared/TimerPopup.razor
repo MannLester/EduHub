@@ -1,0 +1,46 @@
+﻿@inject NavigationManager NavigationManager
+
+<h3>Correct Orders: @CorrectOrders</h3>
+<h3>Wrong Orders: @WrongOrders</h3>
+<h3>Total Orders: @(CorrectOrders + WrongOrders)</h3>
+
+@if (CorrectOrders + WrongOrders > 0)
+{
+    <h3>Rating: @CalculateRating()</h3>
+}
+
+<button class="back-button" @onclick="GoBack">Go Back</button>
+
+@code {
+    [Parameter]
+    public int CorrectOrders { get; set; }
+
+    [Parameter]
+    public int WrongOrders { get; set; }
+
+    private string CalculateRating()
+    {
+        double accuracy = (double)CorrectOrders / (CorrectOrders + WrongOrders) * 100;
+        if (accuracy >= 90)
+        {
+            return "Excellent";
+        }
+        else if (accuracy >= 70)
+        {
+            return "Good";
+        }
+        else if (accuracy >= 50)
+        {
+            return "Fair";
+        }
+        else
+        {
+            return "Poor";
+        }
+    }
+
+    private void GoBack()
+    {
+        NavigationManager.NavigateTo("/simulation");
+    }
+}

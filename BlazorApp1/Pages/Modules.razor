@@ -1,0 +1,99 @@
+﻿@page "/module"
+@using System.Collections.Generic
+
+<Filter></Filter>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="category-buttons">
+                @foreach (var category in categories)
+                {
+                    <button class="category-button @(selectedCategory == category ? "active" : "")" @onclick="() => FilterByCategory(category)">@category</button>
+                }
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="modules">
+                @foreach (var module in filteredModules)
+                {
+                    <ModuleBox ImageUrl="@module.ImageUrl"
+                               Text="@module.Text"
+                               Left="@module.Left"
+                               Top="@module.Top"
+                               Href="@module.Href"/>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    // ModuleBox class definition and other code omitted for brevity
+
+    List<ModuleBox> moduleBoxData = new List<ModuleBox> {
+        new ModuleBox { ImageUrl = "css/resources/modules/botany101.png", Text = "Environmental Science.pdf", Left = "1%", Top = "1%", Category = "HEALTHCARE", Href = "/ppt" },
+        new ModuleBox { ImageUrl = "css/resources/modules/engineeringbasic.png", Text = "Engineering Basics.pdf", Left = "21%", Top = "1%", Category = "ENGINEERING", Href = "/module" },
+        new ModuleBox { ImageUrl = "css/resources/modules/essentialcooking.png", Text = "Essential Cooking Ingredients.pdf", Left = "41%", Top = "1%", Category = "ARTS", Href = "/module" },
+        new ModuleBox { ImageUrl = "css/resources/modules/Introtoprog.png", Text = "Introduction to Programming.pdf", Left = "61%", Top = "1%", Category = "TECHNOLOGY", Href = "/aoop" },
+    // Add more modules as needed
+    };
+
+    List<ModuleBox> filteredModules = new List<ModuleBox>();
+    string searchText = "";
+    List<string> categories = new List<string> { "HEALTHCARE", "ARTS", "TECHNOLOGY", "ENGINEERING", "FINANCES", "EDUCATION" };
+
+    private string selectedCategory = ""; // Track the selected category
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        filteredModules.AddRange(moduleBoxData); // Initially display all modules
+    }
+
+    private void FilterByCategory(string category)
+    {
+        searchText = ""; // Clear search text when filtering by category
+
+        if (selectedCategory == category)
+        {
+            // Clicked the same category again, reset to show all modules
+            selectedCategory = "";
+            filteredModules.Clear();
+            filteredModules.AddRange(moduleBoxData);
+        }
+        else
+        {
+            selectedCategory = category;
+            filteredModules = moduleBoxData
+                .Where(module => module.Category.Equals(selectedCategory, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+    }
+
+    private void SearchTextChanged(ChangeEventArgs e)
+    {
+        searchText = e.Value.ToString();
+        FilterModules();
+    }
+
+    private void FilterModules()
+    {
+        if (!string.IsNullOrEmpty(searchText))
+        {
+            filteredModules = moduleBoxData
+                .Where(module => module.Text.ToLower().Contains(searchText.ToLower()))
+                .ToList();
+        }
+        else if (!string.IsNullOrEmpty(selectedCategory))
+        {
+            filteredModules = moduleBoxData
+                .Where(module => module.Category.Equals(selectedCategory, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+        }
+        else
+        {
+            filteredModules.Clear();
+            filteredModules.AddRange(moduleBoxData);
+        }
+    }
+}

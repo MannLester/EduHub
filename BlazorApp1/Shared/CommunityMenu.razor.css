@@ -1,0 +1,59 @@
+﻿body {
+}
+
+.chat-icon {
+    position: absolute;
+    width: 4%;
+    height: 8vh;
+    left: 3%;
+    top: 3%;
+    border-radius: 50%;
+    background-color: #6D2932;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .chat-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+.post-icon {
+    position: absolute;
+    width: 4%;
+    height: 8vh;
+    left: 10%;
+    top: 3%;
+    border-radius: 50%;
+    background-color: #6D2932;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .post-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+.blog-icon {
+    position: absolute;
+    width: 4%;
+    height: 8vh;
+    left: 17%;
+    top: 3%;
+    border-radius: 50%;
+    background-color: #6D2932;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .blog-icon img {
+        width: 85%;
+        height: 85%;
+        object-fit: contain;
+    }

@@ -1,0 +1,57 @@
+﻿@layout Shared.MainLayout
+@using BlazorApp1.Shared
+@using System.Collections.Generic
+@using System.Linq
+
+@page "/careers/list"
+
+<NavLink href="/careers/list">
+<div class="career-options" id="career-list-button"><b>Career List</b></div>
+</NavLink>
+
+<NavLink href="/careers/tree">
+<div class="career-options" id="career-tree-button"><b>Career Tree</b></div>
+</NavLink>
+
+<div class="career-list"><!-- Pass dictionary of careers grouped by initial letter to CareerListBox component -->
+<CareerListBox CareerGroups="@careerGroups" />
+</div>
+
+@code {
+    // Define the Career class
+    public class Career
+    {
+        public string Name { get; set; }
+    }
+
+    // Define the CareerItem class to match the type expected by CareerListBox component
+    public class CareerItem
+    {
+        public string Name { get; set; }
+    }
+
+    // Initialize the list of careers
+    List<Career> careers = new List<Career>
+    {
+        new Career { Name = "Accountant"},
+        new Career { Name = "Architect"},
+        new Career { Name = "Bartender"},
+        new Career { Name = "Alamang"},
+        new Career { Name = "Zookeeper"},
+        // Add more careers here
+    };
+
+    // Define the dictionary to hold career groups
+    Dictionary<char, List<CareerItem>> careerGroups;
+
+    protected override void OnInitialized()
+    {
+        // Group careers by the first letter of their names and convert them to CareerItem objects
+        careerGroups = careers
+            .GroupBy(c => c.Name.ToUpper()[0])
+            .ToDictionary(
+                g => g.Key,
+                g => g.Select(c => new CareerItem { Name = c.Name}).ToList()
+            );
+    }
+}

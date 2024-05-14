@@ -1,0 +1,29 @@
+﻿@inherits LayoutComponentBase
+
+<div class="module-box" style="position:absolute; left: @Left; top:@Top; background-color: @Color;" @onclick="HandleClick">
+    <img src="@ImageUrl" class="box-image" />
+</div>
+
+@code {
+    [Parameter]
+    public string ImageUrl { get; set; } = "";
+
+    [Parameter]
+    public string Left { get; set; } = "0";
+
+    [Parameter]
+    public string Top { get; set; } = "0";
+
+    [Parameter]
+    public string Color { get; set; } = "";
+
+    [Parameter]
+    public EventCallback<string> OnBoxClicked { get; set; }
+
+    private async Task HandleClick()
+    {
+        Console.WriteLine("Image clicked");
+        Console.WriteLine("ImageUrl: " + ImageUrl);
+        await OnBoxClicked.InvokeAsync(ImageUrl);
+    }
+}

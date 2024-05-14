@@ -1,0 +1,211 @@
+﻿@page "/chat"
+@using Google.Cloud.Firestore
+@inject NavigationManager NavigationManager
+
+<h3>Private Chat</h3>
+
+<p>Select a recipient:</p>
+<div>
+    <select @bind="selectedRecipient">
+        <option value="">Select Recipient</option>
+        @foreach (var user in users)
+        {
+            <option value="@user.Id">@user.Username</option>
+        }
+    </select>
+    <button @onclick="LoadMessagesForSelectedUser" disabled="@string.IsNullOrEmpty(selectedRecipient)">Load Messages</button>
+</div>
+
+<p>Message:</p>
+<textarea @bind="messageContent"></textarea>
+
+<button @onclick="SendMessage" disabled="@string.IsNullOrEmpty(messageContent)">Send</button>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p style="color: red;">@errorMessage</p>
+}
+
+<h4>Messages:</h4>
+@foreach (var message in userMessages)
+{
+    <div>
+        <strong>@message.SenderUsername:</strong> @message.MessageContent
+    </div>
+}
+
+@code {
+    FirestoreDb db = FirestoreDb.Create("oop-try");
+
+    public class User
+    {
+        public string Id { get; set; }
+        public string Username { get; set; }
+        // Other user properties
+    }
+
+    public class Message
+    {
+        public string SenderId { get; set; }
+        public string ReceiverId { get; set; }
+        public string SenderUsername { get; set; }
+        public string MessageContent { get; set; }
+        public string Timestamp { get; set; } // Add timestamp property
+    }
+
+    string selectedRecipient = "";
+    string messageContent = "";
+    string errorMessage = "";
+    string currentUserId = ""; // Variable to store the ID of the logged-in user
+    List<User> users = new List<User>(); // Populate this list with users from the database
+    List<Message> userMessages = new List<Message>(); // List to store messages between the current user and the selected recipient
+
+    // Fetch users from the database
+    protected override async Task OnInitializedAsync()
+    {
+        users = await GetUsers();
+
+        try
+        {
+            if (File.Exists("successful_logins.txt"))
+            {
+                string username = File.ReadAllText("successful_logins.txt").Trim();
+                currentUserId = GetUserIdByUsername(username);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error reading file: " + ex.Message);
+        }
+
+        await LoadMessages();
+    }
+
+    // Retrieve users from Firestore Users collection
+    private async Task<List<User>> GetUsers()
+    {
+        CollectionReference collection = db.Collection("Users");
+        QuerySnapshot docs = await collection.GetSnapshotAsync();
+
+        var userList = new List<User>();
+        foreach (var doc in docs.Documents)
+        {
+            userList.Add(new User { Id = doc.Id, Username = doc.GetValue<string>("username") });
+        }
+        return userList;
+    }
+
+    // Get user ID by username
+    private string GetUserIdByUsername(string username)
+    {
+        foreach (var user in users)
+        {
+            if (user.Username == username)
+            {
+                return user.Id;
+            }
+        }
+        return null; // Return null if username is not found
+    }
+
+
+    // Load messages between the current user and the selected recipient
+    private async Task LoadMessages()
+    {
+        if (!string.IsNullOrEmpty(currentUserId) && !string.IsNullOrEmpty(selectedRecipient))
+        {
+            CollectionReference messagesCollection = db.Collection("Messages");
+
+            QuerySnapshot senderMessages = await messagesCollection
+                .WhereEqualTo("senderId", currentUserId)
+                .WhereEqualTo("receiverId", selectedRecipient)
+                .GetSnapshotAsync();
+
+            QuerySnapshot receiverMessages = await messagesCollection
+                .WhereEqualTo("senderId", selectedRecipient)
+                .WhereEqualTo("receiverId", currentUserId)
+                .GetSnapshotAsync();
+
+            userMessages = MergeMessages(senderMessages, receiverMessages);
+        }
+    }
+
+    // Merge sender and receiver messages and sort by timestamp
+    // Merge sender and receiver messages and sort by timestamp
+    private List<Message> MergeMessages(QuerySnapshot senderMessages, QuerySnapshot receiverMessages)
+    {
+        var mergedMessages = new List<Message>();
+
+        // Add sender messages
+        foreach (var doc in senderMessages.Documents)
+        {
+            mergedMessages.Add(new Message
+                {
+                    SenderId = doc.GetValue<string>("senderId"),
+                    ReceiverId = doc.GetValue<string>("receiverId"),
+                    SenderUsername = users.FirstOrDefault(u => u.Id == doc.GetValue<string>("senderId"))?.Username,
+                    MessageContent = doc.GetValue<string>("message"),
+                    Timestamp = doc.GetValue<Timestamp>("timestamp").ToDateTime().ToString() // Convert Timestamp to DateTime and then to string
+                });
+        }
+
+        // Add receiver messages
+        foreach (var doc in receiverMessages.Documents)
+        {
+            mergedMessages.Add(new Message
+                {
+                    SenderId = doc.GetValue<string>("senderId"),
+                    ReceiverId = doc.GetValue<string>("receiverId"),
+                    SenderUsername = users.FirstOrDefault(u => u.Id == doc.GetValue<string>("senderId"))?.Username,
+                    MessageContent = doc.GetValue<string>("message"),
+                    Timestamp = doc.GetValue<Timestamp>("timestamp").ToDateTime().ToString() // Convert Timestamp to DateTime and then to string
+                });
+        }
+
+        // Sort messages by timestamp
+        mergedMessages.Sort((msg1, msg2) => DateTime.Parse(msg1.Timestamp).CompareTo(DateTime.Parse(msg2.Timestamp)));
+
+        return mergedMessages;
+    }
+
+
+    // Send message to the selected recipient
+    private async Task SendMessage()
+    {
+        if (string.IsNullOrEmpty(selectedRecipient) || string.IsNullOrEmpty(messageContent))
+        {
+            errorMessage = "Please select a recipient and enter a message.";
+            return;
+        }
+
+        try
+        {
+            CollectionReference messagesCollection = db.Collection("Messages");
+            await messagesCollection.AddAsync(new
+            {
+                senderId = currentUserId, // Use the ID of the logged-in user
+                receiverId = selectedRecipient,
+                message = messageContent,
+                timestamp = DateTime.UtcNow,
+                isRead = false
+            });
+
+            // Clear message content after sending
+            messageContent = "";
+            errorMessage = "";
+
+            // Reload messages after sending
+            await LoadMessages();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error sending message: {ex.Message}";
+        }
+    }
+
+    // Load messages for the selected user
+    private async Task LoadMessagesForSelectedUser()
+    {
+        await LoadMessages();
+    }
+}

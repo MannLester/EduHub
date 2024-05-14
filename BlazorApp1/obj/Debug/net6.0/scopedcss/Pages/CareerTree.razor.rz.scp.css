@@ -1,0 +1,35 @@
+body[b-pc1kp2bejx] {
+    overflow: hidden;
+}
+
+.career-options[b-pc1kp2bejx] {
+    position: absolute;
+    width: 15%;
+    height: 10vh;
+    font-size: 28px;
+    text-align: center;
+    border-radius: 9px;
+    background-color: #561C24;
+    color: #C7B7A3;
+    padding: 23px 10px 10px 10px;
+}
+
+#career-list-button[b-pc1kp2bejx] {
+    top: 13%;
+    left: 2%;
+}
+
+#career-tree-button[b-pc1kp2bejx] {
+    top: 28%;
+    left: 2%;
+}
+
+.career-tree[b-pc1kp2bejx] {
+    position: absolute;
+    left: 20%;
+    top: 12%;
+    width: 78%;
+    height: 85%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}

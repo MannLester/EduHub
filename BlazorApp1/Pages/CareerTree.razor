@@ -1,0 +1,237 @@
+﻿@layout Shared.MainLayout
+@using BlazorApp1.Shared
+
+@page "/careers/tree"
+
+<NavLink href="/careers/list">
+    <div class="career-options" id="career-list-button"><b>Career List</b></div>
+</NavLink>
+
+<NavLink href="/careers/tree">
+    <div class="career-options" id="career-tree-button"><b>Career Tree</b></div>
+</NavLink>
+
+@code {
+    string selectedCareer = ""; // Track the selected career
+
+    // Define array of SimulationBox data
+    string[,] careerTreeBoxData = new string[,] {
+        //image url, career text, left, top
+        { "css/resources/careers/HEALTHCARE.png", "5%", "1%", "#EBFEFF" },
+        { "css/resources/careers/TECHNOLOGY.png", "40%", "1%", "#EBFEFF" },
+        { "css/resources/careers/FINANCES.png", "75%", "1%", "#EBFEFF" },
+        { "css/resources/careers/ENGINEERING.png", "5%", "50%", "#EBFEFF" },
+        { "css/resources/careers/ARTS.png", "40%", "50%", "#EBFEFF" },
+        { "css/resources/careers/EDUCATION.png", "75%", "50%", "#EBFEFF" },
+    // Add more elements as needed
+    };
+
+    bool isHealthcareClicked = false;
+    bool isTechnologyClicked = false;
+    bool isFinancesClicked = false;
+    bool isEngineeringClicked = false;
+    bool isArtsClicked = false;
+    bool isEducationClicked = false;
+
+    private void UpdateOtherCareers(string clickedCareer)
+    {
+        selectedCareer = clickedCareer;
+        if (selectedCareer == "css/resources/careers/HEALTHCARE.png" && !isHealthcareClicked)
+        {
+            Console.WriteLine("I have accepted Healthcare");
+            careerTreeBoxData = new string[,] {
+        //image url, career text, left, top
+        { "css/resources/careers/HEALTHCARE.png", "5%", "1%", "green" },
+        { "css/resources/careers/DENTISTRY.png", "75%", "1%", "#EBFEFF" },
+        { "css/resources/careers/NURSING.png", "40%", "1%", "#EBFEFF" },
+        { "css/resources/careers/NUTRITIONIST.png", "5%", "50%", "#EBFEFF" },
+        { "css/resources/careers/PHARMACIST.png", "40%", "50%", "#EBFEFF" },
+        { "css/resources/careers/SURGEON.png", "75%", "50%", "#EBFEFF" },
+    // Add more elements as needed
+    };
+            isHealthcareClicked = true;
+            StateHasChanged();
+        }
+        else if (selectedCareer == "css/resources/careers/HEALTHCARE.png" && isHealthcareClicked)
+        {
+            careerTreeBoxData = new string[,] {
+        //image url, career text, left, top
+        { "css/resources/careers/HEALTHCARE.png", "5%", "1%", "#EBFEFF" },
+        { "css/resources/careers/TECHNOLOGY.png", "40%", "1%", "#EBFEFF" },
+        { "css/resources/careers/FINANCES.png", "75%", "1%", "#EBFEFF" },
+        { "css/resources/careers/ENGINEERING.png", "5%", "50%", "#EBFEFF" },
+        { "css/resources/careers/ARTS.png", "40%", "50%", "#EBFEFF" },
+        { "css/resources/careers/EDUCATION.png", "75%", "50%", "#EBFEFF" },
+    // Add more elements as needed
+    };
+            isHealthcareClicked = false;
+            StateHasChanged();
+        }
+        else if (selectedCareer == "css/resources/careers/TECHNOLOGY.png" && !isTechnologyClicked)
+        {
+            Console.WriteLine("I have accepted Healthcare");
+            careerTreeBoxData = new string[,] {
+        //image url, career text, left, top
+        { "css/resources/careers/TECHNOLOGY.png", "5%", "1%",  "green"},
+        { "css/resources/careers/ARTIFICIAL INTELLIGENCE.png", "75%", "1%", "#EBFEFF" },
+        { "css/resources/careers/COMPUTER SCIENCE.png", "40%", "1%", "#EBFEFF" },
+        { "css/resources/careers/CYBERSECURITY.png", "5%", "50%", "#EBFEFF" },
+        { "css/resources/careers/GAME DEV.png", "40%", "50%", "#EBFEFF" },
+        { "css/resources/careers/SOFTWARE ENGINEERING.png", "75%", "50%", "#EBFEFF" },
+    // Add more elements as needed
+    };
+            isTechnologyClicked = true;
+            StateHasChanged();
+        }
+        else if (selectedCareer == "css/resources/careers/TECHNOLOGY.png" && isTechnologyClicked)
+        {
+            careerTreeBoxData = new string[,] {
+        //image url, career text, left, top
+        { "css/resources/careers/HEALTHCARE.png", "5%", "1%", "#EBFEFF" },
+        { "css/resources/careers/TECHNOLOGY.png", "40%", "1%", "#EBFEFF" },
+        { "css/resources/careers/FINANCES.png", "75%", "1%", "#EBFEFF" },
+        { "css/resources/careers/ENGINEERING.png", "5%", "50%", "#EBFEFF" },
+        { "css/resources/careers/ARTS.png", "40%", "50%", "#EBFEFF" },
+        { "css/resources/careers/EDUCATION.png", "75%", "50%", "#EBFEFF" },
+    // Add more elements as needed
+    };
+            isTechnologyClicked = false;
+            StateHasChanged();
+        }
+        else if (selectedCareer == "css/resources/careers/FINANCES.png" && !isFinancesClicked)
+        {
+            Console.WriteLine("I have accepted Healthcare");
+            careerTreeBoxData = new string[,] {
+        //image url, career text, left, top
+        { "css/resources/careers/FINANCES.png", "5%", "1%", "green" },
+        { "css/resources/careers/FINANCES.png", "75%", "1%", "#EBFEFF"},
+        { "css/resources/careers/FINANCES.png", "40%", "1%", "#EBFEFF"},
+        { "css/resources/careers/FINANCES.png", "5%", "50%", "#EBFEFF" },
+        { "css/resources/careers/FINANCES.png", "40%", "50%", "#EBFEFF" },
+        { "css/resources/careers/FINANCES.png", "75%", "50%", "#EBFEFF" },
+    // Add more elements as needed
+    };
+            isFinancesClicked = true;
+            StateHasChanged();
+        }
+        else if (selectedCareer == "css/resources/careers/FINANCES.png" && isFinancesClicked)
+        {
+            careerTreeBoxData = new string[,] {
+        //image url, career text, left, top
+        { "css/resources/careers/HEALTHCARE.png", "5%", "1%", "#EBFEFF" },
+        { "css/resources/careers/TECHNOLOGY.png", "40%", "1%", "#EBFEFF" },
+        { "css/resources/careers/FINANCES.png", "75%", "1%", "#EBFEFF" },
+        { "css/resources/careers/ENGINEERING.png", "5%", "50%", "#EBFEFF" },
+        { "css/resources/careers/ARTS.png", "40%", "50%", "#EBFEFF" },
+        { "css/resources/careers/EDUCATION.png", "75%", "50%", "#EBFEFF" },
+    // Add more elements as needed
+    };
+            isFinancesClicked = false;
+            StateHasChanged();
+        }
+        else if (selectedCareer == "css/resources/careers/ENGINEERING.png" && !isEngineeringClicked)
+        {
+            Console.WriteLine("I have accepted Healthcare");
+            careerTreeBoxData = new string[,] {
+        //image url, career text, left, top
+        { "css/resources/careers/ENGINEERING.png", "5%", "1%", "green" },
+        { "css/resources/careers/AEROSPACE ENGINEERING.png", "75%", "1%", "#EBFEFF" },
+        { "css/resources/careers/CHEMICAL ENGINEERING.png", "40%", "1%", "#EBFEFF"},
+        { "css/resources/careers/CIVIL ENGINEERING.png", "5%", "50%", "#EBFEFF" },
+        { "css/resources/careers/ELECTRICAL ENGINEERING.png", "40%", "50%", "#EBFEFF" },
+        { "css/resources/careers/MECHANICAL ENGINEERING.png", "75%", "50%", "#EBFEFF" },
+    // Add more elements as needed
+    };
+            isEngineeringClicked = true;
+            StateHasChanged();
+        }
+        else if (selectedCareer == "css/resources/careers/ENGINEERING.png" && isEngineeringClicked)
+        {
+            careerTreeBoxData = new string[,] {
+        //image url, career text, left, top
+        { "css/resources/careers/HEALTHCARE.png", "5%", "1%", "#EBFEFF" },
+        { "css/resources/careers/TECHNOLOGY.png", "40%", "1%", "#EBFEFF" },
+        { "css/resources/careers/FINANCES.png", "75%", "1%", "#EBFEFF" },
+        { "css/resources/careers/ENGINEERING.png", "5%", "50%", "#EBFEFF" },
+        { "css/resources/careers/ARTS.png", "40%", "50%", "#EBFEFF" },
+        { "css/resources/careers/EDUCATION.png", "75%", "50%", "#EBFEFF" },
+    // Add more elements as needed
+    };
+            isEngineeringClicked = false;
+            StateHasChanged();
+        }
+        else if (selectedCareer == "css/resources/careers/ARTS.png" && !isArtsClicked)
+        {
+            Console.WriteLine("I have accepted Healthcare");
+            careerTreeBoxData = new string[,] {
+        //image url, career text, left, top
+        { "css/resources/careers/ARTS.png", "5%", "1%", "#EBFEFF" },
+        { "css/resources/careers/ARTS.png", "75%", "1%", "#EBFEFF" },
+        { "css/resources/careers/ARTS.png", "40%", "1%", "#EBFEFF"},
+        { "css/resources/careers/ARTS.png", "5%", "50%", "#EBFEFF" },
+        { "css/resources/careers/ARTS.png", "40%", "50%", "green" },
+        { "css/resources/careers/ARTS.png", "75%", "50%", "#EBFEFF" },
+    // Add more elements as needed
+    };
+            isArtsClicked = true;
+            StateHasChanged();
+        }
+        else if (selectedCareer == "css/resources/careers/ARTS.png" && isArtsClicked)
+        {
+            careerTreeBoxData = new string[,] {
+        //image url, career text, left, top
+        { "css/resources/careers/HEALTHCARE.png", "5%", "1%", "#EBFEFF" },
+        { "css/resources/careers/TECHNOLOGY.png", "40%", "1%", "#EBFEFF" },
+        { "css/resources/careers/FINANCES.png", "75%", "1%", "#EBFEFF" },
+        { "css/resources/careers/ENGINEERING.png", "5%", "50%", "#EBFEFF" },
+        { "css/resources/careers/ARTS.png", "40%", "50%", "#EBFEFF" },
+        { "css/resources/careers/EDUCATION.png", "75%", "50%", "#EBFEFF" },
+    // Add more elements as needed
+    };
+            isArtsClicked = false;
+            StateHasChanged();
+        }
+        else if (selectedCareer == "css/resources/careers/EDUCATION.png" && !isEducationClicked)
+        {
+            Console.WriteLine("I have accepted Healthcare");
+            careerTreeBoxData = new string[,] {
+        //image url, career text, left, top
+        { "css/resources/careers/EDUCATION.png", "5%", "1%", "#EBFEFF" },
+        { "css/resources/careers/EDUCATION.png", "75%", "1%", "#EBFEFF" },
+        { "css/resources/careers/EDUCATION.png", "40%", "1%", "#EBFEFF"},
+        { "css/resources/careers/EDUCATION.png", "5%", "50%", "#EBFEFF" },
+        { "css/resources/careers/EDUCATION.png", "40%", "50%", "#EBFEFF" },
+        { "css/resources/careers/EDUCATION.png", "75%", "50%", "green" },
+    // Add more elements as needed
+    };
+            isEducationClicked = true;
+            StateHasChanged();
+        }
+        else if (selectedCareer == "css/resources/careers/EDUCATION.png" && isEducationClicked)
+        {
+            careerTreeBoxData = new string[,] {
+        //image url, career text, left, top
+        { "css/resources/careers/HEALTHCARE.png", "5%", "1%", "#EBFEFF" },
+        { "css/resources/careers/TECHNOLOGY.png", "40%", "1%", "#EBFEFF" },
+        { "css/resources/careers/FINANCES.png", "75%", "1%", "#EBFEFF" },
+        { "css/resources/careers/ENGINEERING.png", "5%", "50%", "#EBFEFF" },
+        { "css/resources/careers/ARTS.png", "40%", "50%", "#EBFEFF" },
+        { "css/resources/careers/EDUCATION.png", "75%", "50%", "#EBFEFF" },
+    // Add more elements as needed
+    };
+            isEducationClicked = false;
+            StateHasChanged();
+        }
+    }
+}
+
+<div class="career-tree">
+    @for (int i = 0; i < careerTreeBoxData.GetLength(0); i++)
+    {
+        <CareerTreeBox ImageUrl="@careerTreeBoxData[i, 0]"
+                       Left="@careerTreeBoxData[i, 1]"
+                       Top="@careerTreeBoxData[i, 2]"
+                       Color="@careerTreeBoxData[i,3]"
+                       OnBoxClicked="UpdateOtherCareers" />
+    }
+</div>

@@ -1,0 +1,38 @@
+﻿body{
+    overflow:hidden;
+}
+
+.career-options {
+    position: absolute;
+    width: 15%;
+    height: 10vh;
+    font-size: 28px;
+    text-align: center;
+    border-radius: 9px;
+    background-color: #561C24;
+    color: #C7B7A3;
+    padding: 23px 10px 10px 10px;
+}
+
+#career-list-button {
+    top: 13%;
+    left: 2%;
+}
+
+#career-tree-button {
+    top: 28%;
+    left: 2%;
+}
+
+.career-list {
+    position: absolute;
+    width: 79%;
+    height: 86%;
+    background-color: #561C24;
+    color: #C7B7A3;
+    left: 20%;
+    top: 13%;
+    border-radius: 13px;
+    padding: 15px 10px 10px 30px;
+    overflow-y: auto;
+}

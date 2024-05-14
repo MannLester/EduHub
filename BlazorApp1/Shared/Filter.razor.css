@@ -1,0 +1,91 @@
+﻿.filter-division {
+    position: absolute;
+    width: 17%;
+    height: 65vh;
+    top: 12%;
+    left: 2%;
+    background-color: #561C24;
+    border-radius: 6px;
+}
+
+.filter-text-division {
+    position: absolute;
+    color: #C7B7A3;
+    font-size: 33px;
+    width: 83%;
+    height: 6vh;
+    top: 3%;
+    left: 9%;
+    background-color: #6D2932;
+    text-align: center;
+    border-radius: 10px;
+    padding: 6px 10px 10px 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.filter-simulation-division {
+    position: absolute;
+    color: #C7B7A3;
+    font-size: 14px;
+    width: 35%;
+    height: 6vh;
+    top: 15%;
+    left: 9%;
+    background-color: #6D2932;
+    text-align: center;
+    border-radius: 10px;
+    padding: 18px 12px 12px 12px;
+}
+
+.filter-simulation-division-selected {
+    position: absolute;
+    color: #6D2932;
+    font-size: 14px;
+    width: 35%;
+    height: 6vh;
+    top: 15%;
+    left: 9%;
+    background-color: #C7B7A3;
+    text-align: center;
+    border-radius: 10px;
+    padding: 18px 12px 12px 12px;
+}
+
+.filter-module-division {
+    position: absolute;
+    color: #C7B7A3;
+    font-size: 14px;
+    width: 35%;
+    height: 6vh;
+    top: 15%;
+    left: 57%;
+    background-color: #6D2932;
+    text-align: center;
+    border-radius: 10px;
+    padding: 18px 12px 12px 12px;
+}
+
+.filter-module-division-selected {
+    position: absolute;
+    color: #6D2932;
+    font-size: 14px;
+    width: 35%;
+    height: 6vh;
+    top: 15%;
+    left: 57%;
+    background-color: #C7B7A3;
+    text-align: center;
+    border-radius: 10px;
+    padding: 18px 12px 12px 12px;
+}
+
+.filter-career-text-division {
+    position: absolute;
+    color: #E8D8C4;
+    width: 39%;
+    height: 5vh;
+    top: 30%;
+    left: 8%;
+    background-color: #561C24;
+}
+

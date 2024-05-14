@@ -1,0 +1,108 @@
+﻿body {
+    overflow: hidden;
+}
+
+.simulation-text {
+    position: absolute;
+    color: #561C24;
+    width: 10%;
+    height: 5vh;
+    top: 12%;
+    left: 22%;
+    background-color: #E8D8C4;
+}
+
+.simulation-examples {
+    position: absolute;
+    width: 12%;
+    height: 25vh;
+    top: 20%;
+}
+
+#simulation-example1-division {
+    left: 22%;
+}
+
+#simulation-example2-division {
+    left: 37%;
+}
+
+#simulation-example3-division {
+    left: 52%;
+}
+
+#simulation-example4-division {
+    left: 67%;
+}
+
+.module-text {
+    position: absolute;
+    color: #561C24;
+    width: 10%;
+    height: 5vh;
+    top: 54%;
+    left: 22%;
+    background-color: #E8D8C4;
+}
+
+.module-examples {
+    position: absolute;
+    width: 12%;
+    height: 25vh;
+    top: 64%;
+}
+
+#module-example1-division {
+    left: 22%;
+}
+
+#module-example2-division {
+    left: 37%;
+}
+
+#module-example3-division {
+    left: 52%;
+}
+
+#module-example4-division {
+    left: 67%;
+}
+
+.more-materials {
+    position: absolute;
+    color: #E8D8C4;
+    width: 13%;
+    height: 14vh;
+    left: 83%;
+    background-color: #6D2932;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 30px;
+    padding: 29px;
+}
+
+#more-simulation-division {
+    top: 27%;
+    padding-top: 35px;
+}
+
+#more-module-division {
+    top: 71%;
+    padding-top: 35px;
+}
+
+.simulation-examples img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    overflow: hidden;
+    border: 2px solid black;
+}
+
+.module-examples img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    overflow: hidden;
+    border: 2px solid black;
+}

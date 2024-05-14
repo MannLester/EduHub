@@ -1,0 +1,92 @@
+﻿@using System.Threading.Tasks
+@using Microsoft.AspNetCore.Components
+@using System.Threading
+@using System
+@using BlazorApp1.Shared
+@inject NavigationManager NavigationManager
+
+@if (showTimer)
+{
+    <div class="timer">
+        <h1>@timeLeft</h1>
+    </div>
+}
+
+@if (timeLeft == 0)
+{
+    <div class="popup">
+        <h2 class="result-label"><b>RESULTS</b></h2>
+        <h3 class="correct-order"><b>Correct:</b> @CorrectOrders</h3>
+        <h3 class="wrong-order"><b>Wrong:</b> @WrongOrders</h3>
+        <h3 class="total-order"><b>Total:</b> @(CorrectOrders + WrongOrders)</h3>
+
+        @if (CorrectOrders + WrongOrders > 0)
+        {
+            <h3 class="rating"><b>Rating:</b> @CalculateRating()</h3>
+        }
+        else
+        {
+            <h3 class="rating"><b>YOU SUCK!!!</b></h3>
+        }
+
+        <button class="back-button" @onclick="GoBack">Go Back</button>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public int CorrectOrders { get; set; }
+
+    [Parameter]
+    public int WrongOrders { get; set; }
+
+    private bool showTimer = true;
+    private int timeLeft = 60;
+    private System.Threading.Timer timer;
+
+    protected override void OnInitialized()
+    {
+        timer = new System.Threading.Timer(TimerCallback, null, 1000, 1000); // Initial delay: 1 second, Interval: 1 second
+    }
+
+    private void TimerCallback(object state)
+    {
+        if (timeLeft > 0)
+        {
+            timeLeft--;
+            InvokeAsync(StateHasChanged);
+        }
+        else
+        {
+            timer.Dispose();
+            showTimer = false;
+            InvokeAsync(StateHasChanged);
+        }
+    }
+
+    private void GoBack()
+    {
+        NavigationManager.NavigateTo("/simulation");
+    }
+
+    private string CalculateRating()
+    {
+        double accuracy = (double)CorrectOrders / (CorrectOrders + WrongOrders) * 100;
+        if (accuracy >= 90)
+        {
+            return "Excellent";
+        }
+        else if (accuracy >= 70)
+        {
+            return "Good";
+        }
+        else if (accuracy >= 50)
+        {
+            return "Fair";
+        }
+        else
+        {
+            return "Poor";
+        }
+    }
+}

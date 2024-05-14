@@ -1,0 +1,103 @@
+﻿<!-- SearchUser.razor -->
+@page "/searchuser"
+@using Google.Cloud.Firestore
+@inject NavigationManager NavigationManager
+
+<h3>Search User</h3>
+
+<p>
+    <select @bind="selectedUsername">
+        <option value="">Select Username</option>
+        @foreach (var user in users)
+        {
+            <option value="@user.Username">@user.Username</option>
+        }
+    </select>
+    <button @onclick="ShowPosts">Show Posts</button>
+</p>
+
+@if (selectedUsername != null && posts != null)
+{
+    <h4>@selectedUsername's Posts</h4>
+    @foreach (var post in posts)
+    {
+        <p>@post.postcontent</p>
+    }
+}
+
+@code {
+    FirestoreDb db = FirestoreDb.Create("oop-try");
+
+    public class User
+    {
+        [FirestoreProperty]
+        public string Id { get; set; }
+
+        [FirestoreProperty]
+        public string? Username { get; set; }
+
+        public User()
+        {
+            Id = string.Empty;
+            Username = string.Empty;
+        }
+    }
+
+    public class Post
+    {
+        [FirestoreProperty]
+        public string Id { get; set; }
+
+        [FirestoreProperty]
+        public string? postcontent { get; set; }
+
+        public Post()
+        {
+            Id = string.Empty;
+            postcontent = string.Empty;
+        }
+    }
+
+    List<User> users = new List<User>();
+    List<Post> posts = new List<Post>();
+    string selectedUsername;
+
+    protected override async Task OnInitializedAsync()
+    {
+        users = await GetUsers();
+    }
+
+    private async Task<List<User>> GetUsers()
+    {
+        CollectionReference collection = db.Collection("Users");
+        QuerySnapshot docs = await collection.GetSnapshotAsync();
+
+        var users = new List<User>();
+        foreach (var doc in docs.Documents)
+        {
+            users.Add(new User { Id = doc.Id, Username = doc.GetValue<string>("username") });
+        }
+        return users;
+    }
+
+    private async Task<List<Post>> GetPosts(string username)
+    {
+        CollectionReference collection = db.Collection("Posts");
+        QuerySnapshot docs = await collection.WhereEqualTo("username", username).GetSnapshotAsync();
+
+        var posts = new List<Post>();
+        foreach (var doc in docs.Documents)
+        {
+            posts.Add(new Post { Id = doc.Id, postcontent = doc.GetValue<string>("post") });
+        }
+        return posts;
+    }
+
+    private async Task ShowPosts()
+    {
+        if (!string.IsNullOrEmpty(selectedUsername))
+        {
+            posts = await GetPosts(selectedUsername);
+        }
+    }
+}

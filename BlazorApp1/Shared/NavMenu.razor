@@ -1,0 +1,115 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+
+@if (currentPath == "https://localhost:7192/home")
+{
+    <NavLink href="/home">
+        <div class="navbutton-division" id="home-button-division-selected"><h3><b>Home</b></h3></div>
+    </NavLink>
+    <NavLink href="/simulation">
+        <div class="navbutton-division" id="simulation-button-division"><h3>Simulations</h3></div>
+    </NavLink>
+    <NavLink href="/module">
+        <div class="navbutton-division" id="module-button-division"><h3>Module</h3></div>
+    </NavLink>
+    <NavLink href="/careers/list">
+        <div class="navbutton-division" id="career-button-division"><h3>Career</h3></div>
+    </NavLink>
+    <NavLink href="/chats">
+        <div class="navbutton-division" id="community-button-division"><h3>Community</h3></div>
+    </NavLink>
+}
+else if (currentPath == "https://localhost:7192/simulation")
+{
+    <NavLink href="/home">
+        <div class="navbutton-division" id="home-button-division"><h3>Home</h3></div>
+    </NavLink>
+    <NavLink href="/simulation">
+        <div class="navbutton-division" id="simulation-button-division-selected"><h3><b>Simulations</b></h3></div>
+    </NavLink>
+    <NavLink href="/module">
+        <div class="navbutton-division" id="module-button-division"><h3>Module</h3></div>
+    </NavLink>
+    <NavLink href="/careers/list">
+        <div class="navbutton-division" id="career-button-division"><h3>Career</h3></div>
+    </NavLink>
+    <NavLink href="/chats">
+        <div class="navbutton-division" id="community-button-division"><h3>Community</h3></div>
+    </NavLink>
+}
+else if (currentPath == "https://localhost:7192/module")
+{
+    <NavLink href="/home">
+        <div class="navbutton-division" id="home-button-division"><h3>Home</h3></div>
+    </NavLink>
+    <NavLink href="/simulation">
+        <div class="navbutton-division" id="simulation-button-division"><h3>Simulations</h3></div>
+    </NavLink>
+    <NavLink href="/module">
+        <div class="navbutton-division" id="module-button-division-selected"><h3><b>Module</b></h3></div>
+    </NavLink>
+    <NavLink href="/careers/list">
+        <div class="navbutton-division" id="career-button-division"><h3>Career</h3></div>
+    </NavLink>
+    <NavLink href="/chats">
+        <div class="navbutton-division" id="community-button-division"><h3>Community</h3></div>
+    </NavLink>
+}
+else if (currentPath == "https://localhost:7192/careers/list" || currentPath == "https://localhost:7192/careers/tree")
+{
+    <NavLink href="/home">
+        <div class="navbutton-division" id="home-button-division"><h3>Home</h3></div>
+    </NavLink>
+    <NavLink href="/simulation">
+        <div class="navbutton-division" id="simulation-button-division"><h3>Simulations</h3></div>
+    </NavLink>
+    <NavLink href="/module">
+        <div class="navbutton-division" id="module-button-division"><h3>Module</h3></div>
+    </NavLink>
+    <NavLink href="/careers/list">
+        <div class="navbutton-division" id="career-button-division-selected"><h3><b>Career</b></h3></div>
+    </NavLink>
+    <NavLink href="/chats">
+        <div class="navbutton-division" id="community-button-division"><h3>Community</h3></div>
+    </NavLink>
+}
+else if (currentPath == "https://localhost:7192/chats" || currentPath == "https://localhost:7192/post" || currentPath == "https://localhost:7192/dev")
+{
+    <NavLink href="/home">
+        <div class="navbutton-division" id="home-button-division"><h3>Home</h3></div>
+    </NavLink>
+    <NavLink href="/simulation">
+        <div class="navbutton-division" id="simulation-button-division"><h3>Simulations</h3></div>
+    </NavLink>
+    <NavLink href="/module">
+        <div class="navbutton-division" id="module-button-division"><h3>Module</h3></div>
+    </NavLink>
+    <NavLink href="/careers/list">
+        <div class="navbutton-division" id="career-button-division"><h3>Career</h3></div>
+    </NavLink>
+    <NavLink href="/chats">
+    <div class="navbutton-division" id="community-button-division-selected"><h3><b>Community</b></h3></div>
+    </NavLink>
+}
+
+@code {
+    private string currentPath = "";
+
+    protected override void OnInitialized()
+    {
+        // Get the current URL path
+        currentPath = NavigationManager.Uri;
+
+        // Subscribe to the LocationChanged event to update the currentPath variable
+        NavigationManager.LocationChanged += HandleLocationChanged;
+
+        base.OnInitialized();
+    }
+
+    // Method to handle location changes
+    private void HandleLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    {
+        currentPath = e.Location;
+        StateHasChanged(); // Notify Blazor to re-render the component
+    }
+}

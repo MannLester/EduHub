@@ -1,0 +1,500 @@
+﻿body {
+}
+
+.simulation-bg{
+    position:fixed;
+    left:30%;
+    width:40%;
+    height:100%;
+    background-color: navajowhite;
+}
+
+.simulation-bg img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    z-index:0;
+}
+
+.pharma-bg{
+    position:absolute;
+    top:0%;
+    z-index:0;
+}
+
+.medicine-1{
+    position:absolute;
+    width:14%;
+    height:13%;
+    top:23%;
+    background-color:transparent;
+    border: none;
+    z-index:1;
+}
+
+.ray-1 {
+    display: none;
+}
+
+.medicine-1:hover .ray-1 {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display:inline-block;
+    transform:scale(2);
+}
+
+.medicine-2 {
+    position: absolute;
+    width: 20%;
+    height: 13%;
+    top: 23%;
+    left:37%;
+    background-color: transparent;
+    border:none;
+    z-index: 1;
+}
+
+.ray-2 {
+    display: none;
+}
+
+.medicine-2:hover .ray-2 {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: inline-block;
+    transform: scale(2);
+}
+
+.medicine-3 {
+    position: absolute;
+    width: 23%;
+    height: 13%;
+    top: 23%;
+    left: 57%;
+    background-color: transparent;
+    border:none;
+    z-index: 1;
+}
+
+.ray-3 {
+    display: none;
+}
+
+.medicine-3:hover .ray-3 {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: inline-block;
+    transform:scale(2);
+}
+
+.medicine-4 {
+    position: absolute;
+    width: 13%;
+    height: 14%;
+    top: 22%;
+    left: 80%;
+    background-color: transparent;
+    border:none;
+    z-index: 1;
+}
+
+.ray-4 {
+    display: none;
+}
+
+.medicine-4:hover .ray-4 {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: inline-block;
+    transform:scale(2);
+}
+
+.medicine-5 {
+    position: absolute;
+    width: 14%;
+    height:19%;
+    top: 38%;
+    left: 70%;
+    background-color: transparent;
+    border:none;
+    z-index: 1;
+}
+
+.ray-5 {
+    display: none;
+}
+
+.medicine-5:hover .ray-5 {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: inline-block;
+    transform:scale(2);
+}
+
+.medicine-6 {
+    position: absolute;
+    width: 25%;
+    height: 17%;
+    top: 38%;
+    left: 41%;
+    background-color: transparent;
+    border:none;
+    z-index: 1;
+}
+
+.ray-6 {
+    display: none;
+}
+
+.medicine-6:hover .ray-6 {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: inline-block;
+    transform: scale(2);
+}
+
+.medicine-7 {
+    position: absolute;
+    width: 20%;
+    height: 17%;
+    top: 38%;
+    left: 18%;
+    background-color: transparent;
+    border: none;
+    z-index: 1;
+}
+
+.ray-7 {
+    display: none;
+}
+
+.medicine-7:hover .ray-7 {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: inline-block;
+    transform:scale(2);
+}
+
+.medicine-8 {
+    position: absolute;
+    width: 16%;
+    height: 11%;
+    top: 59%;
+    left: 58%;
+    background-color: transparent;
+    border:none;
+    z-index: 1;
+}
+
+.ray-8 {
+    display: none;
+}
+
+.medicine-8:hover .ray-8 {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: inline-block;
+    transform:scale(2);
+}
+
+.medicine-9 {
+    position: absolute;
+    width: 15%;
+    height: 18%;
+    top: 67%;
+    left: 3%;
+    background-color: transparent;
+    border:none;
+    z-index: 1;
+}
+
+.ray-9 {
+    display: none;
+}
+
+.medicine-9:hover .ray-9 {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: inline-block;
+    transform:scale(2);
+}
+
+.medicine-10 {
+    position: absolute;
+    width: 21%;
+    height: 19%;
+    top: 67%;
+    left: 78%;
+    background-color: transparent;
+    border:none;
+    z-index: 1;
+}
+
+.ray-10 {
+    display: none;
+}
+
+.medicine-10:hover .ray-10 {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: inline-block;
+    transform:scale(2);
+}
+
+.partition-1 {
+    position: absolute;
+    left: 0%;
+    width: 30%;
+    height: 100%;
+    background-color: #6D2932;
+}
+
+.partition-2 {
+    position: absolute;
+    left: 70%;
+    width: 30%;
+    height: 100%;
+    background-color: #6D2932;
+}
+
+.back-arrow{
+    position:absolute;
+    top:-44%;
+    left:41%;
+    transform:scale(0.15);
+    z-index:1;
+}
+.exit {
+    position: absolute;
+    left: 88%;
+    top: 4%;
+    color: black;
+    z-index: 1;
+}
+
+.info-img{
+    position:absolute;
+    top:44%;
+    left: 41%;
+    z-index:1;
+    transform:scale(0.1);
+}
+
+.name {
+    position: absolute;
+    bottom: 2%;
+    left: 7%;
+}
+
+.order{
+    position:absolute;
+    top:10%;
+    left:20%;
+}
+
+.paper{
+    z-index:0;
+}
+
+.handle{
+    position:absolute;
+    top:50%;
+    left:10%;
+    color: navajowhite;
+}
+
+.medicine-list{
+    position:absolute;
+    top:57%;
+    left:13%;
+    color:navajowhite;
+}
+
+.medicine-list h4{
+    margin-bottom:8px;
+}
+
+.counter{
+    position:absolute;
+    top:55%;
+    left:3%;
+    color:navajowhite;
+}
+
+.medicine-count {
+    flex-direction: column;
+    position: absolute;
+    top: 57%;
+    right: 20px; /* Adjust position as needed */
+    color: navajowhite;
+}
+
+    .medicine-count > div {
+        margin-bottom: 8px; /* Adjust spacing as needed */
+    }
+
+.reject{
+    position:absolute;
+    z-index:1;
+    background-color: transparent;
+    border:none;
+    top: 35%;
+    left: 55%;
+    transform:scale(0.5);
+}
+
+.accept{
+    position:absolute;
+    z-index:1;
+    background-color:transparent;
+    border:none;
+    top:35%;
+    left:45%;
+    transform: scale(0.5);
+}
+
+.number-button{
+    position:absolute;
+    width: 10%;
+    height:6%;
+}
+
+#number1{
+    top:59%;
+    left:33%;
+}
+
+#number2{
+    top:59%;
+    left:45%;
+}
+
+#number3{
+    top:59%;
+    left:57%;
+}
+
+#number4 {
+    top: 66%;
+    left: 33%;
+}
+
+#number5 {
+    top: 66%;
+    left: 45%;
+}
+
+#number6 {
+    top: 66%;
+    left: 57%;
+}
+
+#number7 {
+    top: 73%;
+    left: 33%;
+}
+
+#number8 {
+    top: 73%;
+    left: 45%;
+}
+
+#number9 {
+    top: 73%;
+    left: 57%;
+}
+
+#number0 {
+    top: 80%;
+    left: 45%;
+}
+
+.number-display{
+    position:absolute;
+    background-color:white;
+    border: 3px solid black;
+    width: 65%;
+    top:90%;
+    left:20%;
+    font-size:200px;
+}
+
+.pay-button{
+    position:absolute;
+    z-index:1;
+    width:10%;
+    top:-5%;
+    height:108%;
+    left:90%;
+    font-size:33px;
+    padding: 0px 3px 4px 2px;
+}
+
+.pay-button p{
+    position:absolute;
+    top:-13%;
+    left:25%;
+}
+
+.receipt-table{
+    color:navajowhite;
+    position:absolute;
+    left: 15%;
+}
+
+    .receipt-table th,
+    .receipt-table td {
+        padding: 5px 20px; /* Adjust the padding values as needed */
+        text-align: left; /* Align text to the left */
+    }
+
+.total-quantity{
+    position:absolute;
+    top:40%;
+    left:3%;
+    color:navajowhite;
+}
+
+.total-price {
+    position: absolute;
+    top: 44%;
+    left: 3%;
+    color: navajowhite;
+}
+
+.customer-money {
+    position: absolute;
+    top: 48%;
+    left: 3%;
+    color: navajowhite;
+}

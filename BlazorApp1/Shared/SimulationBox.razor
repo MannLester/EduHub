@@ -1,0 +1,25 @@
+﻿@inherits LayoutComponentBase
+
+<NavLink href="@Href">
+<div class="simulation-box" style="position: absolute; left: @Left; top: @Top;">
+    <img src="@ImageUrl" class="box-image" />
+    <center><h3><b>@Text</b></h3></center>
+</div>
+</NavLink>
+
+@code {
+    [Parameter]
+    public string ImageUrl { get; set; } = "";
+
+    [Parameter]
+    public string Text { get; set; } = "";
+
+    [Parameter]
+    public string Left { get; set; } = "0"; 
+
+    [Parameter]
+    public string Top { get; set; } = "0";
+
+    [Parameter]
+    public string Href { get; set; } = "";
+}

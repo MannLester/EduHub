@@ -1,0 +1,621 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\BlazorApp1.bundle.scp.css",
+      "PackagePath": "staticwebassets\\BlazorApp1.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\bootstrap\\pic1.jpg",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\pic1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\bootstrap\\pic2.jpg",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\pic2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\bootstrap\\pic3.jpg",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\pic3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "PackagePath": "staticwebassets\\css\\open-iconic"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "PackagePath": "staticwebassets\\css\\open-iconic"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\open-iconic\\README.md",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\README.md"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\EduHub Logo.png",
+      "PackagePath": "staticwebassets\\css\\resources\\EduHub Logo.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\EduHub_Logo.png",
+      "PackagePath": "staticwebassets\\css\\resources\\EduHub_Logo.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\EduHub_logo2.png",
+      "PackagePath": "staticwebassets\\css\\resources\\EduHub_logo2.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\accept.png",
+      "PackagePath": "staticwebassets\\css\\resources\\accept.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\aoop_ppt\\1.png",
+      "PackagePath": "staticwebassets\\css\\resources\\aoop_ppt\\1.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\aoop_ppt\\10.png",
+      "PackagePath": "staticwebassets\\css\\resources\\aoop_ppt\\10.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\aoop_ppt\\11.png",
+      "PackagePath": "staticwebassets\\css\\resources\\aoop_ppt\\11.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\aoop_ppt\\12.png",
+      "PackagePath": "staticwebassets\\css\\resources\\aoop_ppt\\12.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\aoop_ppt\\13.png",
+      "PackagePath": "staticwebassets\\css\\resources\\aoop_ppt\\13.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\aoop_ppt\\14.png",
+      "PackagePath": "staticwebassets\\css\\resources\\aoop_ppt\\14.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\aoop_ppt\\15.png",
+      "PackagePath": "staticwebassets\\css\\resources\\aoop_ppt\\15.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\aoop_ppt\\16.png",
+      "PackagePath": "staticwebassets\\css\\resources\\aoop_ppt\\16.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\aoop_ppt\\2.png",
+      "PackagePath": "staticwebassets\\css\\resources\\aoop_ppt\\2.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\aoop_ppt\\3.png",
+      "PackagePath": "staticwebassets\\css\\resources\\aoop_ppt\\3.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\aoop_ppt\\4.png",
+      "PackagePath": "staticwebassets\\css\\resources\\aoop_ppt\\4.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\aoop_ppt\\5.png",
+      "PackagePath": "staticwebassets\\css\\resources\\aoop_ppt\\5.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\aoop_ppt\\6.png",
+      "PackagePath": "staticwebassets\\css\\resources\\aoop_ppt\\6.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\aoop_ppt\\7.png",
+      "PackagePath": "staticwebassets\\css\\resources\\aoop_ppt\\7.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\aoop_ppt\\8.png",
+      "PackagePath": "staticwebassets\\css\\resources\\aoop_ppt\\8.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\aoop_ppt\\9.png",
+      "PackagePath": "staticwebassets\\css\\resources\\aoop_ppt\\9.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\arrow.png",
+      "PackagePath": "staticwebassets\\css\\resources\\arrow.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\blog_icon.png",
+      "PackagePath": "staticwebassets\\css\\resources\\blog_icon.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\AEROSPACE ENGINEERING.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\AEROSPACE ENGINEERING.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\ARTIFICIAL INTELLIGENCE.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\ARTIFICIAL INTELLIGENCE.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\ARTS.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\ARTS.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\CHEMICAL ENGINEERING.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\CHEMICAL ENGINEERING.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\CIVIL ENGINEERING.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\CIVIL ENGINEERING.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\COMPUTER SCIENCE.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\COMPUTER SCIENCE.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\CYBERSECURITY.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\CYBERSECURITY.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\DENTISTRY.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\DENTISTRY.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\EDUCATION.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\EDUCATION.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\ELECTRICAL ENGINEERING.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\ELECTRICAL ENGINEERING.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\ENGINEERING.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\ENGINEERING.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\FINANCES.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\FINANCES.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\GAME DEV.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\GAME DEV.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\HEALTHCARE.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\HEALTHCARE.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\MECHANICAL ENGINEERING.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\MECHANICAL ENGINEERING.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\NURSING.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\NURSING.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\NUTRITIONIST.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\NUTRITIONIST.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\PHARMACIST.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\PHARMACIST.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\SOFTWARE ENGINEERING.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\SOFTWARE ENGINEERING.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\SURGEON.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\SURGEON.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\careers\\TECHNOLOGY.png",
+      "PackagePath": "staticwebassets\\css\\resources\\careers\\TECHNOLOGY.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\chats_icon.png",
+      "PackagePath": "staticwebassets\\css\\resources\\chats_icon.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\cityplanning\\Environmental Meter.png",
+      "PackagePath": "staticwebassets\\css\\resources\\cityplanning\\Environmental Meter.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\cityplanning\\Food Supply.png",
+      "PackagePath": "staticwebassets\\css\\resources\\cityplanning\\Food Supply.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\cityplanning\\Funds Meter.png",
+      "PackagePath": "staticwebassets\\css\\resources\\cityplanning\\Funds Meter.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\cityplanning\\Map.jpg",
+      "PackagePath": "staticwebassets\\css\\resources\\cityplanning\\Map.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\cityplanning\\Pollution Meter.png",
+      "PackagePath": "staticwebassets\\css\\resources\\cityplanning\\Pollution Meter.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\cityplanning\\Population Meter.png",
+      "PackagePath": "staticwebassets\\css\\resources\\cityplanning\\Population Meter.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\cityplanning\\Urbanization Icon.png",
+      "PackagePath": "staticwebassets\\css\\resources\\cityplanning\\Urbanization Icon.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\cityplanning\\pic1.jpg",
+      "PackagePath": "staticwebassets\\css\\resources\\cityplanning\\pic1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\cityplanning\\pic10.jpg",
+      "PackagePath": "staticwebassets\\css\\resources\\cityplanning\\pic10.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\cityplanning\\pic11.jpg",
+      "PackagePath": "staticwebassets\\css\\resources\\cityplanning\\pic11.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\cityplanning\\pic2.jpg",
+      "PackagePath": "staticwebassets\\css\\resources\\cityplanning\\pic2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\cityplanning\\pic3.jpg",
+      "PackagePath": "staticwebassets\\css\\resources\\cityplanning\\pic3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\cityplanning\\pic4.jpg",
+      "PackagePath": "staticwebassets\\css\\resources\\cityplanning\\pic4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\cityplanning\\pic5.jpg",
+      "PackagePath": "staticwebassets\\css\\resources\\cityplanning\\pic5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\cityplanning\\pic6.jpg",
+      "PackagePath": "staticwebassets\\css\\resources\\cityplanning\\pic6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\cityplanning\\pic7.jpg",
+      "PackagePath": "staticwebassets\\css\\resources\\cityplanning\\pic7.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\cityplanning\\pic8.jpg",
+      "PackagePath": "staticwebassets\\css\\resources\\cityplanning\\pic8.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\cityplanning\\pic9.jpg",
+      "PackagePath": "staticwebassets\\css\\resources\\cityplanning\\pic9.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\info.png",
+      "PackagePath": "staticwebassets\\css\\resources\\info.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\login_bg.jpg",
+      "PackagePath": "staticwebassets\\css\\resources\\login_bg.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\logoo.png",
+      "PackagePath": "staticwebassets\\css\\resources\\logoo.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\modules\\Introtoprog.png",
+      "PackagePath": "staticwebassets\\css\\resources\\modules\\Introtoprog.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\modules\\botany101.png",
+      "PackagePath": "staticwebassets\\css\\resources\\modules\\botany101.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\modules\\engineeringbasic.png",
+      "PackagePath": "staticwebassets\\css\\resources\\modules\\engineeringbasic.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\modules\\essentialcooking.png",
+      "PackagePath": "staticwebassets\\css\\resources\\modules\\essentialcooking.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\orderPaper.png",
+      "PackagePath": "staticwebassets\\css\\resources\\orderPaper.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\post_icon.png",
+      "PackagePath": "staticwebassets\\css\\resources\\post_icon.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\ppt\\1.png",
+      "PackagePath": "staticwebassets\\css\\resources\\ppt\\1.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\ppt\\10.png",
+      "PackagePath": "staticwebassets\\css\\resources\\ppt\\10.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\ppt\\11.png",
+      "PackagePath": "staticwebassets\\css\\resources\\ppt\\11.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\ppt\\12.png",
+      "PackagePath": "staticwebassets\\css\\resources\\ppt\\12.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\ppt\\13.png",
+      "PackagePath": "staticwebassets\\css\\resources\\ppt\\13.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\ppt\\14.png",
+      "PackagePath": "staticwebassets\\css\\resources\\ppt\\14.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\ppt\\15.png",
+      "PackagePath": "staticwebassets\\css\\resources\\ppt\\15.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\ppt\\2.png",
+      "PackagePath": "staticwebassets\\css\\resources\\ppt\\2.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\ppt\\3.png",
+      "PackagePath": "staticwebassets\\css\\resources\\ppt\\3.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\ppt\\4.png",
+      "PackagePath": "staticwebassets\\css\\resources\\ppt\\4.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\ppt\\5.png",
+      "PackagePath": "staticwebassets\\css\\resources\\ppt\\5.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\ppt\\6.png",
+      "PackagePath": "staticwebassets\\css\\resources\\ppt\\6.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\ppt\\7.png",
+      "PackagePath": "staticwebassets\\css\\resources\\ppt\\7.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\ppt\\8.png",
+      "PackagePath": "staticwebassets\\css\\resources\\ppt\\8.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\ppt\\9.png",
+      "PackagePath": "staticwebassets\\css\\resources\\ppt\\9.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\ppt\\ppt1.jpg",
+      "PackagePath": "staticwebassets\\css\\resources\\ppt\\ppt1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\ppt\\ppt2.jpg",
+      "PackagePath": "staticwebassets\\css\\resources\\ppt\\ppt2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\ppt\\ppt3.jpg",
+      "PackagePath": "staticwebassets\\css\\resources\\ppt\\ppt3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\ray.png",
+      "PackagePath": "staticwebassets\\css\\resources\\ray.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\reject.png",
+      "PackagePath": "staticwebassets\\css\\resources\\reject.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\bio.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\bio.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\city bg.jpg",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\city bg.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\electronic.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\electronic.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\green.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\green.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\hazard.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\hazard.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\medical.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\medical.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\non bio.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\non bio.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\recyclable.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\recyclable.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\trash\\aluminum-can.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\trash\\aluminum-can.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\trash\\banana-peel.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\trash\\banana-peel.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\trash\\batteries.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\trash\\batteries.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\trash\\broken-phone.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\trash\\broken-phone.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\trash\\cardboard-box.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\trash\\cardboard-box.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\trash\\chemical-products.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\trash\\chemical-products.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\trash\\grass-clippings.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\trash\\grass-clippings.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\trash\\leaves.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\trash\\leaves.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\trash\\leftover-food.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\trash\\leftover-food.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\trash\\medicines.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\trash\\medicines.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\trash\\old-tv.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\trash\\old-tv.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\trash\\plastic-bottle.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\trash\\plastic-bottle.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\trash\\styrofoam-packaging.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\trash\\styrofoam-packaging.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\segragation\\trash\\used-syringe.png",
+      "PackagePath": "staticwebassets\\css\\resources\\segragation\\trash\\used-syringe.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\simulation_background.png",
+      "PackagePath": "staticwebassets\\css\\resources\\simulation_background.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\simulations\\Architect.png",
+      "PackagePath": "staticwebassets\\css\\resources\\simulations\\Architect.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\simulations\\Badminton_Player.PNG",
+      "PackagePath": "staticwebassets\\css\\resources\\simulations\\Badminton_Player.PNG"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\simulations\\Ballet_Dancer.PNG",
+      "PackagePath": "staticwebassets\\css\\resources\\simulations\\Ballet_Dancer.PNG"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\simulations\\Bartender.png",
+      "PackagePath": "staticwebassets\\css\\resources\\simulations\\Bartender.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\simulations\\Biologist.png",
+      "PackagePath": "staticwebassets\\css\\resources\\simulations\\Biologist.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\simulations\\Botanist.PNG",
+      "PackagePath": "staticwebassets\\css\\resources\\simulations\\Botanist.PNG"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\simulations\\Chef.png",
+      "PackagePath": "staticwebassets\\css\\resources\\simulations\\Chef.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\simulations\\Chemist.PNG",
+      "PackagePath": "staticwebassets\\css\\resources\\simulations\\Chemist.PNG"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\simulations\\Doctor.png",
+      "PackagePath": "staticwebassets\\css\\resources\\simulations\\Doctor.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\simulations\\Electrician.PNG",
+      "PackagePath": "staticwebassets\\css\\resources\\simulations\\Electrician.PNG"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\simulations\\Fireman.PNG",
+      "PackagePath": "staticwebassets\\css\\resources\\simulations\\Fireman.PNG"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\simulations\\GarbageMan.png",
+      "PackagePath": "staticwebassets\\css\\resources\\simulations\\GarbageMan.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\simulations\\Painter.png",
+      "PackagePath": "staticwebassets\\css\\resources\\simulations\\Painter.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\simulations\\Pharmacist.PNG",
+      "PackagePath": "staticwebassets\\css\\resources\\simulations\\Pharmacist.PNG"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\simulations\\Programmer.png",
+      "PackagePath": "staticwebassets\\css\\resources\\simulations\\Programmer.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\simulations\\Soldier.png",
+      "PackagePath": "staticwebassets\\css\\resources\\simulations\\Soldier.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\simulations\\UrbanPlanner.jpg",
+      "PackagePath": "staticwebassets\\css\\resources\\simulations\\UrbanPlanner.jpg"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\resources\\simulations\\Veterinary.png",
+      "PackagePath": "staticwebassets\\css\\resources\\simulations\\Veterinary.png"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\ASUS\\Downloads\\BlazorApp1\\BlazorApp1\\wwwroot\\firebase.js",
+      "PackagePath": "staticwebassets\\firebase.js"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.BlazorApp1.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.build.BlazorApp1.props",
+      "PackagePath": "build\\BlazorApp1.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.BlazorApp1.props",
+      "PackagePath": "buildMultiTargeting\\BlazorApp1.props"
+    },
+    {
+      "Id": "obj\\Debug\\net6.0\\staticwebassets\\msbuild.buildTransitive.BlazorApp1.props",
+      "PackagePath": "buildTransitive\\BlazorApp1.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

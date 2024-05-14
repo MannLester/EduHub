@@ -1,0 +1,270 @@
+﻿@page "/account"
+@inject NavigationManager NavigationManager
+@using Google.Cloud.Firestore
+@using System
+@using System.Collections.Generic
+@using System.IO
+@using System.Linq
+@using System.Threading.Tasks
+
+<div class="profile-pic">
+    @if (username == "name1")
+    {
+        <img src="css/bootstrap/pic2.jpg" />
+    }
+    else
+    {
+        <img src="css/bootstrap/pic1.jpg" />
+    }
+</div>
+<NavLink href="@profileHref">
+    <div class="account-settings"><h1>Account Settings</h1></div>
+</NavLink>
+<NavLink href="/terms">
+<div class="terms-conditions"><h1>Terms and Conditions</h1></div>
+</NavLink>
+<div class="Profile-form">
+    <h1 class="edit-label"><b>Edit Profile</b></h1>
+    <label for="username" class="username-label"><b>Username:</b> @newUsername</label>
+    <br />
+    <label for="firstName" class="fn-label"><b>First Name:</b></label>
+    <input type="text" id="firstName" @bind="newFirstName" />
+    <br />
+    <label for="lastName" class="ln-label"><b>Last Name:</b></label>
+    <input type="text" id="lastName" @bind="newLastName" />
+    <br />
+    <label for="age" class="age-label"><b>Age:</b></label>
+    <input type="number" id="age" @bind="newAge" />
+    <br />
+    <label for="sex" class="sex-label"><b>Sex:</b></label>
+    <select id="sex" @bind="newSex">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+    </select>
+    <br />
+    <label for="address" class="address-label"><b>Address:</b></label>
+    <textarea id="address" @bind="newAddress"></textarea>
+    <br />
+    <label for="description" class="description-label"><b>Description:</b></label>
+    <textarea id="description" @bind="newDescription"></textarea>
+
+    <div class="profilebutton">
+        <button @onclick="updateProfile">Enter Profile</button>
+    </div>
+</div>
+
+
+@code {
+    private string currentPath = "";
+    private string username = "";
+    private string profileHref = "";
+
+    protected override void OnInitialized()
+    {
+        // Get the current URL path
+        currentPath = NavigationManager.Uri;
+
+        // Subscribe to the LocationChanged event to update the currentPath variable
+        NavigationManager.LocationChanged += HandleLocationChanged;
+
+        try
+        {
+            // Read the username from the file
+            username = File.ReadAllText("successful_logins.txt").Trim();
+            Console.WriteLine("Username read from file: " + username); // Debugging statement
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error reading file: " + ex.Message);
+        }
+
+        profileHref = "/profile/" + username;
+        base.OnInitialized();
+    }
+
+    // Method to handle location changes
+    private void HandleLocationChanged(object sender, Microsoft.AspNetCore.Components.Routing.LocationChangedEventArgs e)
+    {
+        currentPath = e.Location;
+        StateHasChanged(); // Notify Blazor to re-render the component
+    }
+    FirestoreDb db = FirestoreDb.Create("oop-try");
+
+    public class UserProfile
+    {
+        [FirestoreProperty]
+        public string Id { get; set; }
+
+        [FirestoreProperty]
+        public string? Username { get; set; }
+
+        [FirestoreProperty]
+        public string? FirstName { get; set; }
+
+        [FirestoreProperty]
+        public string? LastName { get; set; }
+
+        [FirestoreProperty]
+        public int Age { get; set; }
+
+        [FirestoreProperty]
+        public string? Sex { get; set; }
+
+        [FirestoreProperty]
+        public string? Address { get; set; }
+
+        [FirestoreProperty]
+        public string? Description { get; set; }
+
+
+        public UserProfile()
+        {
+            Id = string.Empty;
+            Username = string.Empty;
+            FirstName = string.Empty;
+            LastName = string.Empty;
+            Age = 0;
+            Sex = string.Empty;
+            Address = string.Empty;
+            Description = string.Empty;
+        }
+    }
+
+    private List<UserProfile> profiles = new List<UserProfile>();
+
+    string newUsername = "";
+    string newFirstName = "";
+    string newLastName = "";
+    int newAge = 0;
+    string newSex = "";
+    string newAddress = "";
+    string newDescription = "";
+    private string newUri = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await refreshProfile();
+
+        try
+        {
+            if (File.Exists("successful_logins.txt"))
+            {
+                newUsername = File.ReadAllText("successful_logins.txt").Trim();
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error reading file: " + ex.Message);
+        }
+    }
+
+    private async Task refreshProfile()
+    {
+        try
+        {
+            CollectionReference profilesCollection = db.Collection("Profiles");
+            QuerySnapshot profilesSnapshot = await profilesCollection.GetSnapshotAsync();
+
+            var profilesList = new List<UserProfile>();
+
+            foreach (var profileDoc in profilesSnapshot.Documents)
+            {
+                var userProfile = new UserProfile
+                    {
+                        Id = profileDoc.Id,
+                        Username = profileDoc.GetValue<string>("Username"),
+                        FirstName = profileDoc.GetValue<string>("FirstName"),
+                        LastName = profileDoc.GetValue<string>("LastName"),
+                        Age = profileDoc.GetValue<int>("Age"),
+                        Sex = profileDoc.GetValue<string>("Sex"),
+                        Address = profileDoc.GetValue<string>("Address"),
+                        Description = profileDoc.GetValue<string>("Description")
+                    };
+
+                profilesList.Add(userProfile);
+            }
+
+            profiles = profilesList;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error fetching profiles: " + ex.Message);
+        }
+    }
+
+    private async Task updateProfile()
+    {
+        try
+        {
+            CollectionReference collection = db.Collection("Profiles");
+
+            // Check if a profile with the given username exists
+            var existingProfileQuery = collection.WhereEqualTo("Username", newUsername);
+            var existingProfileSnapshot = await existingProfileQuery.GetSnapshotAsync();
+
+            if (existingProfileSnapshot.Documents.Count > 0)
+            {
+                // Profile with the given username exists, update its fields with non-empty values
+                var existingProfileDoc = existingProfileSnapshot.Documents.First();
+
+                var updates = new Dictionary<string, object>();
+
+                if (!string.IsNullOrEmpty(newFirstName))
+                    updates["FirstName"] = newFirstName;
+                if (!string.IsNullOrEmpty(newLastName))
+                    updates["LastName"] = newLastName;
+                if (newAge != 0)
+                    updates["Age"] = newAge;
+                if (!string.IsNullOrEmpty(newSex))
+                    updates["Sex"] = newSex;
+                if (!string.IsNullOrEmpty(newAddress))
+                    updates["Address"] = newAddress;
+                if (!string.IsNullOrEmpty(newDescription))
+                    updates["Description"] = newDescription;
+
+                if (updates.Count > 0)
+                {
+                    await existingProfileDoc.Reference.UpdateAsync(updates);
+                    Console.WriteLine("Profile updated successfully.");
+                }
+                else
+                {
+                    Console.WriteLine("No updates provided.");
+                }
+            }
+            else
+            {
+                // Profile with the given username doesn't exist, create a new one
+                var profileData = new Dictionary<string, object>();
+
+                if (!string.IsNullOrEmpty(newUsername))
+                    profileData["Username"] = newUsername;
+                if (!string.IsNullOrEmpty(newFirstName))
+                    profileData["FirstName"] = newFirstName;
+                if (!string.IsNullOrEmpty(newLastName))
+                    profileData["LastName"] = newLastName;
+                if (newAge != 0)
+                    profileData["Age"] = newAge;
+                if (!string.IsNullOrEmpty(newSex))
+                    profileData["Sex"] = newSex;
+                if (!string.IsNullOrEmpty(newAddress))
+                    profileData["Address"] = newAddress;
+                if (!string.IsNullOrEmpty(newDescription))
+                    profileData["Description"] = newDescription;
+
+                await collection.AddAsync(profileData);
+                Console.WriteLine("New profile created successfully.");
+            }
+
+            // Refresh the profile list
+            await refreshProfile();
+            newUri = "/profile/" + newUsername;
+            NavigationManager.NavigateTo(newUri);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error updating profile: " + ex.Message);
+        }
+    }
+}

@@ -1,0 +1,1203 @@
+﻿@page "/city-planning"
+@inject IJSRuntime JSRuntime
+@layout Shared.LoginLayout
+
+@code {
+    string root = "css/resources/cityplanning";
+    string pic1 = "pic1.jpg";
+    string pic2 = "pic2.jpg";
+    string pic3 = "pic3.jpg";
+    string pic4 = "pic4.jpg";
+    string pic5 = "pic5.jpg";
+    string pic6 = "pic6.jpg";
+    string pic7 = "pic7.jpg";
+    string pic8 = "pic8.jpg";
+    string pic9 = "pic9.jpg";
+    string pic10 = "pic10.jpg";
+    string pic11 = "pic11.jpg";
+
+    string selectedImage = null;
+    string target1Image = null;
+    string target2Image = null;
+    string target3Image = null;
+    string target4Image = null;
+    string target5Image = null;
+    string target6Image = null;
+    string target7Image = null;
+    string target8Image = null;
+    string target9Image = null;
+    string target10Image = null;
+    string target11Image = null;
+    string target12Image = null;
+    string target13Image = null;
+    string target14Image = null;
+    string target15Image = null;
+    string target16Image = null;
+    string target17Image = null;
+    string target18Image = null;
+    string target19Image = null;
+    string target20Image = null;
+    string target21Image = null;
+    string target22Image = null;
+    string target23Image = null;
+    string target24Image = null;
+    string target25Image = null;
+    string target26Image = null;
+    string target27Image = null;
+    string target28Image = null;
+    string target29Image = null;
+    string target30Image = null;
+    string target31Image = null;
+    string target32Image = null;
+    string target33Image = null;
+    string target34Image = null;
+    string target35Image = null;
+    string target36Image = null;
+    string target37Image = null;
+    string target38Image = null;
+    string target39Image = null;
+    string target40Image = null;
+    string target41Image = null;
+    string target42Image = null;
+    string target43Image = null;
+    string target44Image = null;
+    string target45Image = null;
+    string target46Image = null;
+    string target47Image = null;
+    string target48Image = null;
+    string target49Image = null;
+    string target50Image = null;
+
+    int environment = 100;
+    int pollution = 0;
+    int urban = 0;
+    int fund = 0;
+    int food = 100;
+    int people = 3;
+    int fundMax = 300;
+    int populationMax = 5;
+    int fundRate = 10;
+    int fundTime = 1;
+    int foodTime = 1;
+    int foodRate = 1;
+    int farmcounter = 0;
+    int deaths = 5;
+    int time = 0;
+    int pollutionTime = 70000;
+
+    System.Timers.Timer fundTimer;
+    System.Timers.Timer foodTimer;
+    System.Timers.Timer deathTimer;
+    System.Timers.Timer pollutionTimer;
+    System.Timers.Timer timer;
+
+    protected override void OnInitialized()
+    {
+        StartTime();
+
+        StartFundTimer();
+
+        StartFoodTimer();
+
+        StartDeathTimer();
+
+        StartPollutionTimer();
+
+    }
+
+    void StartTime()
+    {
+        timer = new System.Timers.Timer(1000);
+        timer.Elapsed += async (sender, e) => await AddTime();
+        timer.AutoReset = true;
+        timer.Start();
+    }
+    void StartPollutionTimer()
+    {
+        pollutionTimer = new System.Timers.Timer(pollutionTime); // 5 seconds interval
+        pollutionTimer.Elapsed += async (sender, e) => await AddPolluteAsync();
+        pollutionTimer.AutoReset = true;
+        pollutionTimer.Start();
+        Console.WriteLine("Pollution Timer Start");
+    }
+
+    void PollutionConnections()
+    {
+        if(environment <= 30)
+        {
+            pollutionTime = 5000;
+            deaths += 10;
+        }    
+        else if(environment <= 50)
+        {
+            pollutionTime = 30000;
+            deaths += 8;
+        }
+        else if(environment <= 80)
+        {
+            pollutionTime = 60000;
+            deaths += 5;
+        }
+    }
+
+    void StartDeathTimer()
+    {
+        deathTimer = new System.Timers.Timer(120000); // 5 seconds interval
+        deathTimer.Elapsed += async (sender, e) => await AddDeathsAsync();
+        deathTimer.AutoReset = true;
+        deathTimer.Start();
+        Console.WriteLine("Death Timer Start");
+    }
+
+    void StartFundTimer()
+    {
+        // Start the timer when the component is initialized
+        fundTimer = new System.Timers.Timer(10000-(urban * 200)); // 5 seconds interval
+        fundTimer.Elapsed += async (sender, e) => await AddFundsAsync();
+        fundTimer.AutoReset = true;
+        fundTimer.Start();
+        Console.WriteLine("Fund Timer Start");
+    }
+
+    void StartFoodTimer()
+    {
+        foodTimer = new System.Timers.Timer(foodTime * 1000);
+        foodTimer.Elapsed += async (sender, e) => await AddFoodAsync();
+        foodTimer.AutoReset = true;
+        foodTimer.Start();
+        Console.WriteLine("Food Timer Strart");
+    }
+
+    async Task AddTime()
+    {
+        await InvokeAsync(() =>
+        {
+            time += 1;
+            StateHasChanged();
+        });
+    }
+
+    async Task AddPolluteAsync()
+    {
+        await InvokeAsync(() =>
+        {
+            pollution += 5;
+            Console.WriteLine("Pollution INCreased");
+            StateHasChanged();
+        });
+    }
+
+    async Task AddDeathsAsync()
+    {
+        await InvokeAsync(() =>
+        {
+            if (people > 0)
+            {
+                people -= deaths;
+                if (people < 0)
+                {
+                    people = 0;
+                }
+            }
+            else
+            {
+                deathTimer.Stop();
+                people = 0;
+            }
+            StateHasChanged();
+        });
+    }
+    async Task AddFundsAsync()
+    {
+        // Use InvokeAsync to marshal the UI update to the correct thread
+        await InvokeAsync(() =>
+     {
+         if (fund < fundMax) // Check if the fund is less than 100
+         {
+             fund += fundRate*people;
+             Console.WriteLine($"Funds increased by {fundRate}");
+
+             if (fund >= fundMax)
+             {
+                 // If fund reaches 100 or more, stop the timer
+                 fundTimer.Stop();
+                 fund = fundMax;
+             }
+
+             StateHasChanged();
+         }
+     });
+    }
+
+    async Task AddFoodAsync()
+    {
+        await InvokeAsync(() =>
+        {
+            food += farmcounter*foodRate;
+            StateHasChanged();
+        });
+    }
+
+    void SelectImage(string imageName)
+    {
+        selectedImage = imageName;
+        Console.WriteLine($"Selected Image: {selectedImage}");
+        if(selectedImage== "pic1")
+        {
+            if(fund >= 300 && food >= 50)
+            {
+                fund -= 300;
+            }
+            else
+            {
+                selectedImage = null;
+            }
+        }
+        else if (selectedImage == "pic2")
+        {
+            if (fund >= 350 && food >= 50)
+            {
+                fund -= 350;
+            }
+            else
+            {
+                selectedImage = null;
+            }
+        }
+        else if (selectedImage == "pic3")
+        {
+            if (fund >= 50 && food >= 50)
+            {
+                fund -= 50;
+            }
+            else
+            {
+                selectedImage = null;
+            }
+        }
+        else if (selectedImage == "pic4")
+        {
+            if (fund >= 1500 && food >= 50)
+            {
+                fund -= 1500;
+            }
+            else
+            {
+                selectedImage = null;
+            }
+        }
+        else if (selectedImage == "pic5")
+        {
+            if (fund >= 300 && food >= 50)
+            {
+                fund -= 300;
+            }
+            else
+            {
+                selectedImage = null;
+            }
+        }
+        else if (selectedImage == "pic6")
+        {
+            if (fund >= 100 && food >= 50)
+            {
+                fund -= 100;
+            }
+            else
+            {
+                selectedImage = null;
+            }
+        }
+        else if (selectedImage == "pic7")
+        {
+            if (fund >= 550 && food >= 50)
+            {
+                fund -= 550;
+            }
+            else
+            {
+                selectedImage = null;
+            }
+        }
+        else if (selectedImage == "pic8")
+        {
+            if (fund >= 500 && food >= 50)
+            {
+                fund -= 500;
+            }
+            else
+            {
+                selectedImage = null;
+            }
+        }
+        else if (selectedImage == "pic9")
+        {
+            if (fund >= 300 && food >= 50)
+            {
+                fund -= 300;
+            }
+            else
+            {
+                selectedImage = null;
+            }
+        }
+        else if (selectedImage == "pic10")
+        {
+            if (fund >= 150 && food >= 50)
+            {
+                fund -= 150;
+            }
+            else
+            {
+                selectedImage = null;
+            }
+        }
+        else if (selectedImage == "pic11")
+        {
+            if (fund >= 200)
+            {
+                fund -= 200;
+            }
+            else
+            {
+                selectedImage = null;
+            }
+        }
+    }
+
+    void Backend(string bldg)
+    {
+        if (bldg == "pic1")//bank
+        {
+            environment -= 5;
+            fundMax += 500;
+            urban += 5;
+        }
+        else if (bldg == "pic2")//factory
+        {
+            environment -= 15;
+            urban += 15;
+        }
+        else if (bldg == "pic3")//fountain
+        {
+            people += 1;
+        }
+        else if (bldg == "pic4")//gov bldg
+        {
+            environment -= 5;
+            urban += 5;
+            people += 10;
+        }
+        else if (bldg == "pic5")//hospital
+        {
+            environment -= 5;
+            urban -= 5;
+            deaths -= 2;
+        }
+        else if (bldg == "pic6")//houses
+        {
+            populationMax += 5;
+            people += 3;
+        }
+        else if (bldg == "pic7")//mall
+        {
+            environment -= 10;
+            urban -= 10;
+            people += 25;
+        }
+        else if (bldg == "pic8")//office
+        {
+            environment -= 10;
+            people += 15;
+            urban += 20;
+        }
+        else if (bldg == "pic9")//police
+        {
+            environment -= 5;
+            urban -= 5;
+            deaths -= 1;
+        }
+        else if (bldg == "pic10")//tree
+        {
+            environment += 10;
+            urban -= 5;
+            pollution -= 5;
+        }
+        else if (bldg == "pic11")//farm
+        {
+            environment += 15;
+            urban -= 15;
+            food += 50;
+            pollution -= 3;
+            farmcounter += 1;
+
+        }
+
+        food -= 50;
+        if (people >= populationMax)
+        {
+            people = populationMax;
+        }
+
+        PollutionConnections();
+        StateHasChanged();
+    }
+    void DropImage(string target)
+    {
+        if (selectedImage != null)
+        {
+            Console.WriteLine($"Dropped {selectedImage} into {target}");
+            if (target == "target1")
+            {
+                target1Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target2")
+            {
+                target2Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target3")
+            {
+                target3Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target4")
+            {
+                target4Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target5")
+            {
+                target5Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target6")
+            {
+                target6Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target7")
+            {
+                target7Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target8")
+            {
+                target8Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target9")
+            {
+                target9Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target10")
+            {
+                target10Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target11")
+            {
+                target11Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target12")
+            {
+                target12Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target13")
+            {
+                target13Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target14")
+            {
+                target14Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target15")
+            {
+                target15Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target16")
+            {
+                target16Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target17")
+            {
+                target17Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target18")
+            {
+                target18Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target19")
+            {
+                target19Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target20")
+            {
+                target20Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target21")
+            {
+                target21Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target22")
+            {
+                target22Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target23")
+            {
+                target23Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target24")
+            {
+                target24Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target25")
+            {
+                target25Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target26")
+            {
+                target26Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target27")
+            {
+                target27Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target28")
+            {
+                target28Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target29")
+            {
+                target29Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target30")
+            {
+                target30Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target31")
+            {
+                target31Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target32")
+            {
+                target32Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target33")
+            {
+                target33Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target34")
+            {
+                target34Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target35")
+            {
+                target35Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target36")
+            {
+                target36Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target37")
+            {
+                target37Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target38")
+            {
+                target38Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target39")
+            {
+                target39Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target40")
+            {
+                target40Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target41")
+            {
+                target41Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target42")
+            {
+                target42Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target43")
+            {
+                target43Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target44")
+            {
+                target44Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target45")
+            {
+                target45Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target46")
+            {
+                target46Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target47")
+            {
+                target47Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target48")
+            {
+                target48Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target49")
+            {
+                target49Image = $"{root}/{selectedImage}.jpg";
+            }
+            else if (target == "target50")
+            {
+                target50Image = $"{root}/{selectedImage}.jpg";
+            }
+            Backend(selectedImage);
+            fundTimer.Start();
+            selectedImage = null;
+        }
+    }
+}
+
+<div>
+    <div>
+        <div class="e-meter">
+            <img src="css/resources/cityplanning/Environmental Meter.png" />
+            <h3 style="position:absolute; left: 60%; top:48%;">@environment%</h3>
+        </div>
+        <div class="pollute-meter">
+            <img src="css/resources/cityplanning/Pollution Meter.png" />
+            <h3 style="position:absolute; left: 100%; top:48%;">@pollution%</h3>
+        </div>
+        <div class="urban-meter">
+            <img src="css/resources/cityplanning/Urbanization Icon.png" />
+            <h3 style="position:absolute; left: 60%; top:48%;">@urban%</h3>
+        </div>
+        <div class="fund-meter">
+            <img src="css/resources/cityplanning/Funds Meter.png" />
+            <h3 style="position:absolute; left: 60%; top:46%;">@fund/@fundMax</h3>
+        </div>
+        <div class="food-meter">
+            <img src="css/resources/cityplanning/Food Supply.png" />
+            <h3 style="position:absolute; left: 60%; top:47%;">@food</h3>
+        </div>
+        <div class="people-meter">
+            <img src="css/resources/cityplanning/Population Meter.png" />
+            <h3 style="position:absolute; left: 60%; top:47%;">@people/@populationMax</h3>
+        </div>
+        <div style="position:absolute; z-index: 1; background-color:blue; left: 50%; top:5%;">
+            <h3 style="position:absolute; z-index:1">@time</h3>
+        </div>
+    </div>
+
+    <div style="text-align: center; background-color:#6D2932; position:absolute; top:87%; height:120px; width:100%; overflow-x:auto; border: 2px solid navajowhite; z-index:2">
+        <img src="@($"{root}/{pic1}")" @onclick='() => SelectImage("pic1")' class="pics" id="pic1" title="-$300, -food, -5% eMeter, +500 maxFund, +5% uMeter"/><!--bank-->
+        <img src="@($"{root}/{pic2}")" @onclick='() => SelectImage("pic2")' class="pics" id="pic2" title="-$350, -food, -15% eMeter, +15% uMeter"/><!--factory-->
+        <img src="@($"{root}/{pic3}")" @onclick='() => SelectImage("pic3")' class="pics" id="pic3" title="-$50, -food, +1 people"/><!--fountain-->
+        <img src="@($"{root}/{pic4}")" @onclick='() => SelectImage("pic4")' class="pics" id="pic4" title="-$1500, -food, -5% eMeter, +10 people, +5% uMeter"/><!--government-->
+        <img src="@($"{root}/{pic5}")" @onclick='() => SelectImage("pic5")' class="pics" id="pic5" title="-$300, -food, -5% eMeter, -3 personDeath, +5% uMeter"/><!--hospital-->
+        <img src="@($"{root}/{pic6}")" @onclick='() => SelectImage("pic6")' class="pics" id="pic6" title="-$100, -food, -3% eMeter, +3 people, +5 maxPeople, + 3% uMeter"/><!--house-->
+        <img src="@($"{root}/{pic7}")" @onclick='() => SelectImage("pic7")' class="pics" id="pic7" title="-$550, -food, -10% eMeter, +25 people, +10% uMeter "/><!--mall-->
+        <img src="@($"{root}/{pic8}")" @onclick='() => SelectImage("pic8")' class="pics" id="pic8" title="-$550, -food, -10% eMeter, +15 people, +20% uMeter"/><!--office building-->
+        <img src="@($"{root}/{pic9}")" @onclick='() => SelectImage("pic9")' class="pics" id="pic9" title="-$300, -food, -5% eMeter, -1 personDeath, +5% uMeter "/><!--police-->
+        <img src="@($"{root}/{pic10}")" @onclick='() => SelectImage("pic10")' class="pics" id="pic10" title="-$150, -food, -5% uMeter, +10% eMeter"/><!--tree-->
+        <img src="@($"{root}/{pic11}")" @onclick='() => SelectImage("pic11")' class="pics" id="pic11" title="-$200, +5 foodPerSecond, -15% uMeter, +15% eMeter"/><!--farm-->
+    </div>
+    <div class="background-image">
+        <div class="box1" @onclick='() => DropImage("target1")'>
+            @if (target1Image != null)
+            {
+                <img src="@target1Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box2">
+            @if (target2Image != null)
+            {
+                <img src="@target2Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box3" @onclick='() => DropImage("target3")'>
+            @if (target3Image != null)
+            {
+                <img src="@target3Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box4" @onclick='() => DropImage("target4")'>
+            @if (target4Image != null)
+            {
+                <img src="@target4Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box5" @onclick='() => DropImage("target5")'>
+            @if (target5Image != null)
+            {
+                <img src="@target5Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box6" @onclick='() => DropImage("target6")'>
+            @if (target6Image != null)
+            {
+                <img src="@target6Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box7" @onclick='() => DropImage("target7")'>
+            @if (target7Image != null)
+            {
+                <img src="@target7Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box8" @onclick='() => DropImage("target8")'>
+            @if (target8Image != null)
+            {
+                <img src="@target8Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box9" @onclick='() => DropImage("target9")'>
+            @if (target9Image != null)
+            {
+                <img src="@target9Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box10" @onclick='() => DropImage("target10")'>
+            @if (target10Image != null)
+            {
+                <img src="@target10Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box11" @onclick='() => DropImage("target11")'>
+            @if (target11Image != null)
+            {
+                <img src="@target11Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box12" @onclick='() => DropImage("target12")'>
+            @if (target12Image != null)
+            {
+                <img src="@target12Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box13" @onclick='() => DropImage("target13")'>
+            @if (target13Image != null)
+            {
+                <img src="@target13Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box14" @onclick='() => DropImage("target14")'>
+            @if (target14Image != null)
+            {
+                <img src="@target14Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box15" @onclick='() => DropImage("target15")'>
+            @if (target15Image != null)
+            {
+                <img src="@target15Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box16" @onclick='() => DropImage("target16")'>
+            @if (target16Image != null)
+            {
+                <img src="@target16Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box17" @onclick='() => DropImage("target17")'>
+            @if (target17Image != null)
+            {
+                <img src="@target17Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box18" @onclick='() => DropImage("target18")'>
+            @if (target18Image != null)
+            {
+                <img src="@target18Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box19" @onclick='() => DropImage("target19")'>
+            @if (target19Image != null)
+            {
+                <img src="@target19Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box20" @onclick='() => DropImage("target20")'>
+            @if (target20Image != null)
+            {
+                <img src="@target20Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box21" @onclick='() => DropImage("target21")'>
+            @if (target21Image != null)
+            {
+                <img src="@target21Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box22" @onclick='() => DropImage("target22")'>
+            @if (target22Image != null)
+            {
+                <img src="@target22Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box23" @onclick='() => DropImage("target23")'>
+            @if (target23Image != null)
+            {
+                <img src="@target23Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box24" @onclick='() => DropImage("target24")'>
+            @if (target24Image != null)
+            {
+                <img src="@target24Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box25" @onclick='() => DropImage("target25")'>
+            @if (target25Image != null)
+            {
+                <img src="@target25Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box26" @onclick='() => DropImage("target26")'>
+            @if (target26Image != null)
+            {
+                <img src="@target26Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box27" @onclick='() => DropImage("target27")'>
+            @if (target27Image != null)
+            {
+                <img src="@target27Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box28" @onclick='() => DropImage("target28")'>
+            @if (target28Image != null)
+            {
+                <img src="@target28Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box29" @onclick='() => DropImage("target29")'>
+            @if (target29Image != null)
+            {
+                <img src="@target29Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box30" @onclick='() => DropImage("target30")'>
+            @if (target30Image != null)
+            {
+                <img src="@target30Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box31" @onclick='() => DropImage("target31")'>
+            @if (target31Image != null)
+            {
+                <img src="@target31Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box32" @onclick='() => DropImage("target32")'>
+            @if (target32Image != null)
+            {
+                <img src="@target32Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box33" @onclick='() => DropImage("target33")'>
+            @if (target33Image != null)
+            {
+                <img src="@target33Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box34" @onclick='() => DropImage("target34")'>
+            @if (target34Image != null)
+            {
+                <img src="@target34Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box35" @onclick='() => DropImage("target35")'>
+            @if (target35Image != null)
+            {
+                <img src="@target35Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box36" @onclick='() => DropImage("target36")'>
+            @if (target36Image != null)
+            {
+                <img src="@target36Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box37" @onclick='() => DropImage("target37")'>
+            @if (target37Image != null)
+            {
+                <img src="@target37Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box38" @onclick='() => DropImage("target38")'>
+            @if (target38Image != null)
+            {
+                <img src="@target38Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box39" @onclick='() => DropImage("target39")'>
+            @if (target39Image != null)
+            {
+                <img src="@target39Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box40" @onclick='() => DropImage("target40")'>
+            @if (target40Image != null)
+            {
+                <img src="@target40Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box41" @onclick='() => DropImage("target41")'>
+            @if (target41Image != null)
+            {
+                <img src="@target41Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box42" @onclick='() => DropImage("target42")'>
+            @if (target42Image != null)
+            {
+                <img src="@target42Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box43" @onclick='() => DropImage("target43")'>
+            @if (target43Image != null)
+            {
+                <img src="@target43Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box44" @onclick='() => DropImage("target44")'>
+            @if (target44Image != null)
+            {
+                <img src="@target44Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box45" @onclick='() => DropImage("target45")'>
+            @if (target45Image != null)
+            {
+                <img src="@target45Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box46" @onclick='() => DropImage("target46")'>
+            @if (target46Image != null)
+            {
+                <img src="@target46Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box47" @onclick='() => DropImage("target47")'>
+            @if (target47Image != null)
+            {
+                <img src="@target47Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box48" @onclick='() => DropImage("target48")'>
+            @if (target48Image != null)
+            {
+                <img src="@target48Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box49" @onclick='() => DropImage("target49")'>
+            @if (target49Image != null)
+            {
+                <img src="@target49Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+        <div class="box50" @onclick='() => DropImage("target50")'>
+            @if (target50Image != null)
+            {
+                <img src="@target50Image" style="max-width: 100%; max-height: 100%;" />
+            }
+            else
+            {
+                <img src="css/resources/cityplanning/Map.jpg" />
+            }
+        </div>
+    </div>
+</div>

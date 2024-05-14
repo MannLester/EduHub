@@ -1,0 +1,195 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = BlazorApp1
+build_property.RootNamespace = BlazorApp1
+build_property.ProjectDir = C:\Users\ASUS\Downloads\BlazorApp1\BlazorApp1\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\ASUS\Downloads\BlazorApp1\BlazorApp1
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/Chatuser.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhdHVzZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/CorrectWrongOrdersPopup.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29ycmVjdFdyb25nT3JkZXJzUG9wdXAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ291bnRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/FetchData.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmV0Y2hEYXRhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/Searchuser.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VhcmNodXNlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Shared/CareerListBox.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENhcmVlckxpc3RCb3gucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Shared/Chatbot.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENoYXRib3QucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Shared/LoginLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luTGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFN1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Shared/TimerPopup.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFRpbWVyUG9wdXAucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/Account.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-dl0rybzmco
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/AccountSettings.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNjb3VudFNldHRpbmdzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-5vc6vnndad
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/Aoop_ppt.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQW9vcF9wcHQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-i7r5oml41y
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/Blog.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQmxvZy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-fza80mfj20
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/Careers.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWVycy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-zjv2l8moza
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/CareerTree.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2FyZWVyVHJlZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-pc1kp2bejx
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/Chats.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hhdHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-z54mslopqt
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/CityPlanning.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2l0eVBsYW5uaW5nLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-7ukc7atea8
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-rnrr1pkvg1
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/Loginuser.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW51c2VyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-wjaow39hhz
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/Main.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFpbi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-lsouz8eqiw
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/Modules.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTW9kdWxlcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-h7agmtz2zs
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/Post1.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUG9zdDEucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-00d13539pz
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/Ppt.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHB0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-k9x9sa6okr
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/Register1.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0ZXIxLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-k9wwsp9jh6
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/Segragation.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2VncmFnYXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-8cz8p3nlnv
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/SimulationGame.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2ltdWxhdGlvbkdhbWUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-fnkl0v7l8l
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/Simulations.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2ltdWxhdGlvbnMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-4rx2ggkgl1
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/Terms.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVybXMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-bx38fl6qn9
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Shared/CareerTreeBox.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENhcmVlclRyZWVCb3gucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-tddnc90hs9
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Shared/CommunityMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXENvbW11bml0eU1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-et31w9oz50
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Shared/Filter.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEZpbHRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-m33v130q7k
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-45rkf8v3vv
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Shared/ModuleBox.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1vZHVsZUJveC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-qx9f3w4q3m
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-b5wscdn8ts
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Shared/Order.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE9yZGVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-yeb6661xtq
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Shared/SimulationBox.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFNpbXVsYXRpb25Cb3gucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-5hs6p3g0tf
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Shared/Timer.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFRpbWVyLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-hh9crdk3f6
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/ASUS/Downloads/BlazorApp1/BlazorApp1/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

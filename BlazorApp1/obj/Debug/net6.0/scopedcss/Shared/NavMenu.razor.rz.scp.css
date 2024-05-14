@@ -1,0 +1,83 @@
+.navbutton-division[b-b5wscdn8ts] {
+    position: absolute;
+    top: 4%;
+    width: 12%;
+    height: 7vh;
+    background-color: #E8D8C4;
+    text-align: center;
+    color: #6D2932;
+}
+
+#home-button-division[b-b5wscdn8ts] {
+    left: 25%;
+}
+#home-button-division-selected[b-b5wscdn8ts]{
+    position: absolute;
+    left: 25%;
+    top: 2%;
+    width: 10%;
+    height: 7vh;
+    background-color: azure;
+    border-radius: 10px;
+    padding-top: 15px;
+}
+
+#simulation-button-division[b-b5wscdn8ts] {
+    left: 40%;
+}
+
+#simulation-button-division-selected[b-b5wscdn8ts] {
+    position: absolute;
+    left: 40%;
+    top: 2%;
+    width: 10%;
+    height: 7vh;
+    background-color: azure;
+    border-radius: 10px;
+    padding-top: 15px;
+}
+
+#module-button-division[b-b5wscdn8ts] {
+    left: 55%;
+}
+
+#module-button-division-selected[b-b5wscdn8ts] {
+    position: absolute;
+    left: 55%;
+    top: 2%;
+    width: 10%;
+    height: 7vh;
+    background-color: azure;
+    border-radius: 10px;
+    padding-top: 15px;
+}
+
+#career-button-division[b-b5wscdn8ts] {
+    left: 70%;
+}
+
+#career-button-division-selected[b-b5wscdn8ts] {
+    position: absolute;
+    left: 70%;
+    top: 2%;
+    width: 10%;
+    height: 7vh;
+    background-color: azure;
+    border-radius: 10px;
+    padding-top: 15px;
+}
+
+#community-button-division[b-b5wscdn8ts] {
+    left: 85%;
+}
+
+#community-button-division-selected[b-b5wscdn8ts] {
+    position: absolute;
+    left: 85%;
+    top: 2%;
+    width: 10%;
+    height: 7vh;
+    background-color: azure;
+    border-radius: 10px;
+    padding-top: 15px;
+}

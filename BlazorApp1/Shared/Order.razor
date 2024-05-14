@@ -1,0 +1,72 @@
+﻿@page "/random-order"
+
+<ul class="random-order">
+    @foreach (var item in RandomOrder)
+    {
+            @if (item.Key.Contains("Age"))
+            {
+                <div>@item.Key</div>
+            }
+            else
+            {
+                <h4>@item.Value @item.Key</h4>
+            }
+    }
+</ul>
+
+@code {
+    // Define arrays for medicines and quantities
+    string[] medicines = { "Antibiotics", "Insulin", "Ibuprofen", "Antihistamines", "Cough Syrup", "Antacid", "Condom", "Beverage", "Cream", "Liquid Soap" };
+    int[] quantities = { 5, 2, 6, 3, 1, 4, 1, 2, 3, 2 };
+
+    // Additional arrays for random names and ages
+    string[] names = { "John", "Emily", "Michael", "Sophia", "William", "Emma", "Daniel", "Olivia", "Alexander", "Ava" };
+    int[] ages = { 25, 30, 13, 40, 45, 50, 10, 60, 15, 18 };
+
+    // Property to store the random order
+    public Dictionary<string, int> RandomOrder { get; set; }
+
+    public void RefreshOrder()
+    {
+        RandomOrder = GenerateRandomOrder(medicines, quantities);
+        StateHasChanged();
+    }
+
+    // Method to generate a random order
+    protected override void OnInitialized()
+    {
+        RandomOrder = GenerateRandomOrder(medicines, quantities);
+    }
+
+    public Dictionary<string, int> GenerateRandomOrder(string[] medicines, int[] quantities)
+    {
+        Random rand = new Random();
+        Dictionary<string, int> order = new Dictionary<string, int>();
+
+        // Generate a random number of items in the order (up to the length of the medicines array)
+        int numItems = rand.Next(2, 5);
+
+        // Randomly select medicines and quantities for the order
+        for (int i = 0; i < numItems; i++)
+        {
+            int index = rand.Next(0, medicines.Length);
+            string medicine = medicines[index];
+            int quantity = rand.Next(1, quantities[index] + 1);
+            order[medicine] = quantity;
+        }
+
+        // Add random name, age, and prescription information
+        int personIndex = rand.Next(0, names.Length);
+        string name = names[personIndex];
+        int age = ages[personIndex];
+        bool hasPrescription = rand.Next(2) == 0; // Random boolean value (true or false)
+
+        // Generate person's information
+        string personInfo = $"{name}, Age: {age}, Prescription: {(hasPrescription ? "Yes" : "No")}";
+
+        // Add person's information to the order dictionary
+        order.Add(personInfo, 1);
+
+        return order;
+    }
+}
