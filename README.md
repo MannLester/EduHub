@@ -22,3 +22,6 @@ Diomael Lecaroz - Assets Editor and Resource Manager<br>
 Edrian Hernandez - Assets Editor, Prompt Engineer, and Frontend Developer<br>
 Marc Linus Rosales - Backend, AI, and Database Developer<br>
 Mann Lester Magbuhos - FullStack, AI Developer, and Project Manager<br>
+
+#Link for Canva Presentation
+https://www.canva.com/design/DAGEtqGnaDU/WhNhrcZs3g1Oe-coBhWwnw/edit?utm_content=DAGEtqGnaDU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
