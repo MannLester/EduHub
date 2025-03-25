@@ -1,0 +1,14 @@
+C:\Users\Mann lee\source\repos\trial\trial\bin\Debug\net8.0\trial.exe
+C:\Users\Mann lee\source\repos\trial\trial\bin\Debug\net8.0\trial.deps.json
+C:\Users\Mann lee\source\repos\trial\trial\bin\Debug\net8.0\trial.runtimeconfig.json
+C:\Users\Mann lee\source\repos\trial\trial\bin\Debug\net8.0\trial.dll
+C:\Users\Mann lee\source\repos\trial\trial\bin\Debug\net8.0\trial.pdb
+C:\Users\Mann lee\source\repos\trial\trial\obj\Debug\net8.0\trial.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mann lee\source\repos\trial\trial\obj\Debug\net8.0\trial.AssemblyInfoInputs.cache
+C:\Users\Mann lee\source\repos\trial\trial\obj\Debug\net8.0\trial.AssemblyInfo.cs
+C:\Users\Mann lee\source\repos\trial\trial\obj\Debug\net8.0\trial.csproj.CoreCompileInputs.cache
+C:\Users\Mann lee\source\repos\trial\trial\obj\Debug\net8.0\trial.dll
+C:\Users\Mann lee\source\repos\trial\trial\obj\Debug\net8.0\refint\trial.dll
+C:\Users\Mann lee\source\repos\trial\trial\obj\Debug\net8.0\trial.pdb
+C:\Users\Mann lee\source\repos\trial\trial\obj\Debug\net8.0\trial.genruntimeconfig.cache
+C:\Users\Mann lee\source\repos\trial\trial\obj\Debug\net8.0\ref\trial.dll
