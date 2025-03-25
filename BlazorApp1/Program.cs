@@ -3,7 +3,7 @@ using BlazorApp1.Shared;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
-string credentialPath = @"C:\Users\ASUS\Downloads\BlazorApp1\oop-try-firebase-adminsdk-5g6y2-493a4cbe0f.json";
+string credentialPath = @"oop-try-431a6-firebase-adminsdk-fbsvc-55acc2f3c3.json";
 Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS",credentialPath);
 var builder = WebApplication.CreateBuilder(args);
 
